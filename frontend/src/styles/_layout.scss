@@ -1,0 +1,17 @@
+@import 'mixins';
+
+.layout-grid {
+  display: grid;
+  height: 100%;
+  width: 100%;
+
+  @include landscape {
+    grid-template-columns: $width-nav $width-main;
+    grid-template-areas: 'nav main';
+  }
+
+  @include portrait {
+    grid-template-rows: $height-nav-mobile $height-main-mobile;
+    grid-template-areas: 'nav' 'main';
+  }
+}

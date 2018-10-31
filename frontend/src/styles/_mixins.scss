@@ -1,0 +1,23 @@
+@mixin flex($direction, $wrapping, $axis: '') {
+  display: flex;
+  flex-flow: $direction $wrapping;
+
+  @if $axis == 'inline' or 'both' {
+    justify-content: center;
+  } @else if $axis == 'block' or 'both' {
+    align-items: center;
+  }
+  @content; // allow overriding
+}
+
+@mixin landscape {
+  @media screen and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin portrait {
+  @media screen and (orientation: portrait) {
+    @content;
+  }
+}

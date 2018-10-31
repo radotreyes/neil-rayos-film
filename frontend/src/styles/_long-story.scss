@@ -1,0 +1,13 @@
+@import 'mixins';
+
+div.long-story {
+  @include flex(column, nowrap) {
+    justify-content: stretch;
+    align-items: stretch;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

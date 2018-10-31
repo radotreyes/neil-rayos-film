@@ -1,0 +1,13 @@
+@import 'mixins';
+
+.main-content {
+  @include flex(row, wrap) {
+    justify-content: stretch;
+    align-items: stretch;
+  }
+  grid-area: main;
+
+  h1 {
+    flex-basis: 100%;
+  }
+}

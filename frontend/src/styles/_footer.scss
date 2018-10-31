@@ -1,0 +1,67 @@
+@import 'mixins';
+@import 'theme';
+
+footer.footer.landscape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include landscape {
+    color: $theme-dark;
+    position: fixed;
+    bottom: 0;
+    background-color: $theme-light;
+    height: 3rem;
+    width: $width-nav;
+
+    a {
+      color: $theme-dark;
+    }
+
+    .svg-wrapper {
+      .hamburger__path--expanding {
+        transition: $x-accel-trailing;
+      }
+      &:hover {
+        .hamburger__path--expanding {
+          transform: translateX(12px);
+          transform-origin: center;
+          transition: $x-decel-trailing;
+        }
+      }
+    }
+
+    // #hamburger {
+    //   .hamburger__path--expanding {
+    //     transition: $x-decel-trailing;
+    //     d: path(
+    //       '
+    //         '
+    //         ' M 16,
+    //         22 H 4 c -1.104,
+    //         0-2,
+    //         0.896-2,
+    //         2 s 0.896,
+    //         2,
+    //         2,
+    //         2 h 12 c 1.104,
+    //         0,
+    //         2-0.896,
+    //         2-2.2 S 16,
+    //         22,
+    //         16,
+    //         22 z
+    //       '
+    //     );
+    //   }
+    //   &:hover {
+    //     .hamburger__path--expanding {
+    //       transition: $x-decel-leading;
+    //       d: path(
+    //         'M 28,22 H 4 c -1.104,0-2, 0.896-2,2 s 0.896,2, 2,2 h 24 c 1.104,0, 2-0.896,2-2 S 29.104,22, 28,22 z'
+    //       );
+    //     }
+    //   }
+    // }
+  }
+}
