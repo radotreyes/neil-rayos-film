@@ -1,13 +1,7 @@
-@import 'mixins';
+// @import 'mixins';
 
-div.long-story {
-  @include flex(column, nowrap) {
-    justify-content: stretch;
-    align-items: stretch;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
+// @for $i from 1 to 3 {
+//   .long-story-#{$i} {
+//     background: linear-gradient(-165deg, #000, #444);
+//   }
+// }

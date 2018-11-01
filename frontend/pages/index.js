@@ -4,8 +4,9 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import PageWrapper from '../components/PageWrapper'
-import GridWrapper from '../components/GridWrapper'
+import ScreenWrapper from '../components/ScreenWrapper'
 import Nav from '../components/Nav'
+import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 import LongStory from '../components/LongStory'
 import config from '../config'
@@ -13,41 +14,32 @@ import config from '../config'
 class Index extends Component {
   static propTypes = {
     // headerMenu: PropTypes.object.isRequired,
-    allPhotos: PropTypes.array.isRequired,
+    media: PropTypes.array.isRequired,
   }
 
   static async getInitialProps() {
-    const { apiUrl } = config
+    const { apiUrl, media } = config
     const pageRes = await fetch(
       `${apiUrl}/wp-json/postlight/v1/page?slug=welcome`,
     )
     const page = await pageRes.json()
 
-    const allPhotosRes = await fetch(`${apiUrl}/wp-json/wp/v2/photos?_embed`)
-    const allPhotos = await allPhotosRes.json()
-    return { page, allPhotos }
+    const mediaRes = await fetch(`${apiUrl}/${media}`)
+    const allMedia = await mediaRes.json()
+    return { page, media: allMedia }
   }
 
   render() {
-    const { allPhotos } = this.props
+    const { media } = this.props
 
     return (
-      <GridWrapper>
-        {() => (
-          <Fragment>
-            <Nav />
-            <Layout className="main-content">
-              {/* <LongStory photos={allPhotos} /> */}
-              {
-                // TODO: video hero component
-                // TODO: three-pane landing
-                // TODO: projects slideshow/carousel
-                // TODO: call to action/"who am i"
-              }
-            </Layout>
-          </Fragment>
-        )}
-      </GridWrapper>
+      <Fragment>
+        {/* <Nav /> */}
+        <Hero background={media} />
+        <LongStory order="1" />
+        <LongStory order="2" />
+        <LongStory order="3" />
+      </Fragment>
     )
   }
 }

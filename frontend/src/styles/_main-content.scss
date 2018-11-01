@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'theme';
 
 .main-content {
   @include flex(row, wrap) {

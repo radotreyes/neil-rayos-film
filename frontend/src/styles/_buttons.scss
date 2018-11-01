@@ -1,0 +1,39 @@
+@import 'mixins';
+@import 'theme';
+
+@mixin button-animation {
+  transition: transform 0.25s $xX-decel, margin 0.25s $xX-decel 0.25s,
+    padding 0.25s $xX-decel 0.25s;
+  transform: translateY(0);
+
+  &:hover {
+    border: 1px solid $theme-darker;
+    background-color: $theme-darker;
+    color: $theme-light;
+    transform: translateY(-0.5rem);
+    padding: 0.5rem 1.75rem;
+    margin: 0 0.25rem;
+  }
+}
+
+button {
+  border-radius: 5px 1px 5px 0;
+  color: $theme-dark;
+  cursor: pointer;
+  font: $theme-font;
+  padding: 0.5rem 1.25rem;
+  margin: 0 0.75rem;
+  text-transform: uppercase;
+}
+
+.button--primary {
+  @include button-animation;
+  background-color: $theme-light;
+}
+
+.button--ghost {
+  @include button-animation;
+  background-color: transparent;
+  color: $theme-light;
+  border: 1px solid $theme-light;
+}
