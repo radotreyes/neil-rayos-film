@@ -14,21 +14,35 @@
 
 body {
   background: $theme-gradient;
+  /* main text is #FCFCFC */
+  color: $theme-light;
+  .subtext {
+    color: $theme-sub;
+  }
   font: $theme-font;
   margin: 0 !important;
   overflow: hidden scroll;
-  h1,
-  h2 {
-    color: $theme-dark;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  marquee {
+
+  /* only h1 tags have Asap Condensed */
+  h1 {
     font: $header-font;
+  }
+
+  /* all headers have font weight 300 */
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-weight: 300;
+    }
+  }
+
+  @for $j from 2 through 6 {
+    h#{$j} {
+      margin: 0 0 1rem 0;
+    }
+  }
+
+  p {
+    margin: 0 0 1rem 0;
   }
 }
 

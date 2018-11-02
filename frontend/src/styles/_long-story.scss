@@ -1,7 +1,194 @@
-// @import 'mixins';
+@import 'mixins';
 
-// @for $i from 1 to 3 {
-//   .long-story-#{$i} {
-//     background: linear-gradient(-165deg, #000, #444);
-//   }
-// }
+._fullscreen-flex {
+  display: flex;
+  position: relative;
+  height: inherit;
+  width: inherit;
+}
+
+.long-story {
+  &__introduction {
+    @extend ._fullscreen-flex;
+
+    &--main {
+      flex-basis: 35%;
+      margin-left: 15%;
+      margin-bottom: 20vh;
+      align-self: center;
+
+      .introduction {
+        &__header {
+          text-transform: uppercase;
+        }
+
+        &__action {
+          display: flex;
+          align-items: center;
+          padding-top: 0.25rem;
+          svg {
+            margin-left: 0;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+
+    &--stills {
+      display: flex;
+      flex-flow: column nowrap;
+      flex-basis: 65%;
+      margin-right: 10%;
+      align-self: center;
+
+      [class^='introduction__still'] {
+        @include aspect-ratio(16, 9, 35%);
+        border-radius: 34px 1.7px 34px 1.7px;
+        margin: 0.5rem;
+      }
+
+      .introduction__still {
+        &--1 {
+          margin-right: 15%;
+          align-self: flex-end;
+          background-color: $theme-blue;
+        }
+
+        &--2 {
+          align-self: center;
+          background-color: $theme-yellow;
+        }
+
+        &--3 {
+          margin-left: 15%;
+          background-color: $theme-red;
+        }
+      }
+    }
+  }
+
+  &__projects {
+    @extend ._fullscreen-flex;
+
+    &--viewbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 60%;
+
+      .viewbox {
+        &__screen {
+          @include aspect-ratio(16, 9, 70%);
+          background-color: $theme-darker;
+          border: 20px solid black;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    &--menu {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: flex-start;
+      margin-left: -5vw;
+      flex-basis: 40%;
+
+      ul {
+        padding-left: 0;
+        width: 70%;
+        li {
+          color: $theme-sub;
+          list-style-type: none;
+          padding: 1rem;
+
+          p {
+            display: none;
+          }
+
+          h5 {
+            display: none;
+          }
+
+          &.active {
+            background-color: $theme-darker;
+            border-radius: 5px;
+            border-left: 2px solid $theme-red;
+            color: $theme-light;
+            margin-bottom: 1rem;
+
+            p {
+              display: block;
+              color: $theme-sub;
+            }
+
+            h5 {
+              display: block;
+              margin-bottom: 0.25rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__about {
+    display: flex;
+    flex-flow: row wrap;
+    height: inherit;
+    align-content: center;
+    align-items: center;
+    margin: 0 20vw;
+    transform: translateY(-5rem);
+
+    [class*='__header'] {
+      text-transform: uppercase;
+    }
+
+    &--header {
+      display: block;
+      flex-basis: 100%;
+      margin-bottom: 2.5rem;
+      width: 40%;
+      text-align: center;
+
+      &:after {
+        content: 'WHO AM I?';
+        color: transparent;
+        border-top: 1px solid $theme-red;
+      }
+    }
+
+    &--left,
+    &--right {
+      $this: &;
+      flex-basis: 45%;
+      margin: 0 2.5%;
+
+      svg {
+        margin-right: 0.5rem;
+        path {
+          fill: $theme-sub;
+        }
+      }
+
+      .text-link {
+        color: $theme-light;
+        text-decoration: none;
+        transition: $x-decel-hang;
+
+        &:hover {
+          margin-left: 0.5rem;
+          #{$this} {
+            svg {
+              path {
+                fill: $theme-red;
+              }
+            }
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

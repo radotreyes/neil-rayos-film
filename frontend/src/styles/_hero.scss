@@ -1,51 +1,54 @@
 @import 'mixins';
 @import 'theme';
 
-.hero__grid {
-  display: grid;
-  height: 100vh;
-  width: 100vw;
+.hero {
+  &__grid {
+    display: grid;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
 
-  grid-template-columns: 5vw 1fr 5vw;
-  grid-template-rows: 5vh 1fr 10vh;
-}
-
-.hero__header {
-  grid-area: 2 / 2 / 3 / 3;
-  place-self: center;
-
-  * {
-    color: $theme-light;
+    grid-template-columns: 5vw 1fr 5vw;
+    grid-template-rows: 5vh 1fr 10vh;
   }
 
-  h1 {
-    padding: 0;
-    margin: 0;
+  &__header {
+    grid-area: 2 / 2 / 3 / 3;
+    place-self: center;
 
-    font-size: 4rem;
-  }
-
-  .header__svgs {
-    display: flex;
-    align-items: center;
-    margin: 0.25rem 0;
-    .svgs__svgs {
-      margin-left: 0.5rem;
+    * {
+      color: $theme-light;
     }
-    svg {
-      margin: 0 0.33rem;
+
+    h1 {
+      padding: 0;
+      margin: 0;
+
+      font-size: 4rem;
+    }
+
+    .header__svgs {
+      display: flex;
+      align-items: center;
+      margin: 0.25rem 0;
+      .svgs__svgs {
+        margin-left: 0.5rem;
+      }
+      svg {
+        margin: 0 0.33rem;
+      }
     }
   }
-}
 
-.hero__buttons {
-  grid-area: 3 / 2 / 4 / 3;
-  place-self: center;
-}
+  &__buttons {
+    grid-area: 3 / 2 / 4 / 3;
+    place-self: center;
+  }
 
-.hero__image {
-  position: absolute;
-  max-width: 100vw;
-  max-height: 100vh;
-  z-index: -999;
+  &__image {
+    position: absolute;
+    max-width: 100vw;
+    max-height: 100vh;
+    z-index: -999;
+  }
 }

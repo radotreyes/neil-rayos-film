@@ -26,14 +26,16 @@ button {
   text-transform: uppercase;
 }
 
-.button--primary {
-  @include button-animation;
-  background-color: $theme-light;
-}
+.button {
+  &--primary {
+    @include button-animation;
+    background-color: $theme-light;
+  }
 
-.button--ghost {
-  @include button-animation;
-  background-color: transparent;
-  color: $theme-light;
-  border: 1px solid $theme-light;
+  &--ghost {
+    @include button-animation;
+    background-color: transparent;
+    color: $theme-light;
+    border: 1px solid $theme-light;
+  }
 }

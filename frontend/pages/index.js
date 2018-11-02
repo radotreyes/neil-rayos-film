@@ -14,31 +14,33 @@ import config from '../config'
 class Index extends Component {
   static propTypes = {
     // headerMenu: PropTypes.object.isRequired,
-    media: PropTypes.array.isRequired,
+    acf: PropTypes.object.isRequired,
   }
 
   static async getInitialProps() {
-    const { apiUrl, media } = config
+    const { apiUrl, frontPage, media } = config
     const pageRes = await fetch(
       `${apiUrl}/wp-json/postlight/v1/page?slug=welcome`,
     )
     const page = await pageRes.json()
 
-    const mediaRes = await fetch(`${apiUrl}/${media}`)
-    const allMedia = await mediaRes.json()
-    return { page, media: allMedia }
+    const acfRes = await fetch(`${apiUrl}/${frontPage}`)
+    const { acf } = await acfRes.json()
+    return { page, acf }
   }
 
   render() {
-    const { media } = this.props
+    const {
+      acf: {
+        hero, intro, projects, about,
+      },
+    } = this.props
 
     return (
       <Fragment>
         {/* <Nav /> */}
-        <Hero background={media} />
-        <LongStory order="1" />
-        <LongStory order="2" />
-        <LongStory order="3" />
+        <Hero fields={hero} />
+        <LongStory fields={{ intro, projects, about }} />
       </Fragment>
     )
   }

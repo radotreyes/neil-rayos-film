@@ -21,3 +21,11 @@
     @content;
   }
 }
+
+@mixin aspect-ratio($aspect-width, $aspect-height, $base-width) {
+  $aspect-ratio: ($aspect-height / $aspect-width) * 100%;
+  height: 0;
+  overflow: hidden;
+  padding-top: 56.25% * ($base-width / 100%);
+  width: $base-width;
+}

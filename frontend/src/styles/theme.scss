@@ -12,6 +12,7 @@ $height-main-mobile: 80vh;
 
 /* colors */
 $theme-light: #fcfcfc;
+$theme-sub: #888;
 $theme-darker: #111;
 $theme-dark: #333;
 $theme-secondary: #525252;
@@ -20,7 +21,7 @@ $theme-red: #ed2b4f;
 $theme-yellow: #ffa933;
 
 /* gradients */
-$theme-gradient: linear-gradient(-165deg, #000, #333);
+$theme-gradient: linear-gradient(-165deg, #000, #111, #303030, #111, #000);
 
 /* transitions */
 $xX-accel: cubic-bezier(0.4, 0, 1, 1);

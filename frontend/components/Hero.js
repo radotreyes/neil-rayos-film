@@ -11,12 +11,13 @@ import Twitter from '../svgs/twitter.svg'
 
 export default class Hero extends Component {
   static propTypes = {
-    background: PropTypes.array.isRequired,
+    fields: PropTypes.object.isRequired,
   }
 
   render() {
-    const { background } = this.props
-    const heroBg = background[0].source_url
+    const {
+      fields: { featured_image, featured_text },
+    } = this.props
     return (
       <ScreenWrapper screen="hero">
         {() => (
@@ -24,11 +25,11 @@ export default class Hero extends Component {
             <div
               className="hero__grid"
               style={{
-                backgroundImage: `url(${heroBg})`,
+                backgroundImage: `url(${featured_image})`,
               }}
             >
               <div className="hero__header">
-                <h1>I'm a film director and producer</h1>
+                <h1>{featured_text}</h1>
                 <div className="header__svgs">
                   <span>FIND ME ON:</span>
                   <div className="svgs__svgs">
