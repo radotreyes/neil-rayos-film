@@ -1,0 +1,25 @@
+@import 'mixins';
+@import 'theme';
+
+.projects-page {
+  position: relative;
+  left: 10vw;
+  width: 80vw;
+  height: 100vw;
+}
+
+.masonry__project-anchor {
+  width: calc(20vw - 1rem);
+  margin: 0 0.5rem 0.5rem 0;
+  overflow: hidden;
+}
+
+.masonry__project-image {
+  width: calc(20vw - 1rem);
+  transition: $x-decel-hang;
+  transform-origin: center;
+  &:hover {
+    width: 20vw;
+    margin: 0 2rem 1rem 0;
+  }
+}

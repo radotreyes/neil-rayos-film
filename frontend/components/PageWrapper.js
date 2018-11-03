@@ -12,7 +12,6 @@ const PageWrapper = Comp => class extends Component {
 
   render() {
     const { menus } = this.props
-
     return (
       <MenuContext.Provider value={menus}>
         <Comp {...this.props} />

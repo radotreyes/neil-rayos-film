@@ -29,7 +29,7 @@ export default class Hero extends Component {
               }}
             >
               <div className="hero__header">
-                <h1>{featured_text}</h1>
+                <h1 className="jumbotron marquee">{featured_text}</h1>
                 <div className="header__svgs">
                   <span>FIND ME ON:</span>
                   <div className="svgs__svgs">

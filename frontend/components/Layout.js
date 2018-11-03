@@ -8,8 +8,6 @@ import Nav from './Nav'
 const Layout = ({ children }) => (
   <Fragment>
     <main className="main-content">
-      {/* <Archive title="Posts" query="posts" slug="post" />
-      <Archive title="Pages" query="pages" slug="page" /> */}
       <div className>{children}</div>
     </main>
     {/* <Footer /> */}

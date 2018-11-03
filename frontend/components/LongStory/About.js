@@ -29,7 +29,7 @@ export default class LongStory extends Component {
         {() => (
           <div className="long-story__about">
             <div className="long-story__about--header">
-              <h2>WHO AM I?</h2>
+              <h2 className="lead--center">WHO AM I?</h2>
             </div>
             <div className="long-story__about--left">
               <h3 className="left__header">{left_panel.header}</h3>

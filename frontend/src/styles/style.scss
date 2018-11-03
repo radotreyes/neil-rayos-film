@@ -1,15 +1,63 @@
+@import 'buttons';
 @import 'footer';
+@import 'hero';
 @import 'layout';
 @import 'logo';
 @import 'long-story';
 @import 'main-content';
 @import 'nav';
+@import 'projects';
 @import 'theme';
-@import 'hero';
-@import 'buttons';
 
 :root {
   font-size: 16px;
+}
+
+/* all headers have font weight 300 */
+@for $i from 1 through 6 {
+  $header-sizes: nth(2rem 1.75rem 1.5rem 1.25rem 1.125rem 1rem, $i);
+  $marquee-sizes: nth(4rem 3rem 2.5rem 2.25rem 1.75rem 1.5rem, $i);
+  h#{$i} {
+    font-weight: 300;
+    font-size: $header-sizes;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h#{$i}.marquee {
+    font: $header-font;
+    padding: 0;
+    margin: 0;
+  }
+
+  h#{$i}.jumbotron {
+    font-size: $marquee-sizes;
+  }
+
+  h#{$i}.lead {
+    text-transform: uppercase;
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: $marquee-sizes;
+      left: 0.15vw;
+      transform: translateY($header-sizes);
+      margin-top: 1rem;
+      border-top: 1px solid $theme-red;
+    }
+    &--center {
+      &:after {
+        position: absolute;
+        content: '';
+        width: $marquee-sizes;
+        left: 50%;
+        transform: translate(-0.5 * $marquee-sizes, $header-sizes);
+        margin-top: 1rem;
+        border-top: 1px solid $theme-red;
+      }
+    }
+  }
 }
 
 body {
@@ -22,18 +70,6 @@ body {
   font: $theme-font;
   margin: 0 !important;
   overflow: hidden scroll;
-
-  /* only h1 tags have Asap Condensed */
-  h1 {
-    font: $header-font;
-  }
-
-  /* all headers have font weight 300 */
-  @for $i from 1 through 6 {
-    h#{$i} {
-      font-weight: 300;
-    }
-  }
 
   @for $j from 2 through 6 {
     h#{$j} {

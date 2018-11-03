@@ -10,16 +10,16 @@ app
   .then(() => {
     const server = express()
 
-    server.get(`/booking`, (req, res) => {
-      const actualPage = `/booking`
-      const queryParams = { slug: `booking`, apiRoute: `page` }
+    server.get(`/projects`, (req, res) => {
+      const actualPage = `/projects`
+      const queryParams = { slug: `projects`, apiRoute: `page` }
       app.render(req, res, actualPage, queryParams)
     })
 
     /* single photo */
-    server.get(`/photo/:slug`, (req, res) => {
-      const actualPage = `/photo`
-      const queryParams = { slug: req.params.slug, apiRoute: `photos` }
+    server.get(`/project/:slug`, (req, res) => {
+      const actualPage = `/project`
+      const queryParams = { slug: req.params.slug, apiRoute: `projects` }
       app.render(req, res, actualPage, queryParams)
     })
 
