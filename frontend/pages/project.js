@@ -14,21 +14,19 @@ class Project extends Component {
   }
 
   static async getInitialProps(ctx) {
-    const { slug, apiRoute } = ctx.query
+    const { slug } = ctx.query
     const { apiUrl } = config
     const projectRes = await fetch(
       `${apiUrl}/wp-json/wp/v2/projects?_embed&slug=${slug}`,
     )
     const project = await projectRes.json()
 
-    console.log(`${apiUrl}/wp-json/wp/v2/${apiRoute}?slug=${slug}`)
     return { project: project[0] }
   }
 
   render() {
     const { project } = this.props
     const { slug } = project
-    console.log(`PHOTO:`, project)
 
     if (!project.title) return <Error statusCode={404} />
 
