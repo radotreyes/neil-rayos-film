@@ -9,6 +9,8 @@ export default {
   singleMediaPost(slug) {
     return `wp-json/wp/photo?_embed`
   },
-  frontPage: `wp-json/wp/v2/pages/5`,
+  frontPage: `wp-json/wp/v2/pages?slug=front-page`,
+  projects: `wp-json/wp/v2/pages?slug=projects`,
+  about: `wp-json/wp/v2/pages?slug=about`,
   media: `/wp-json/wp/v2/media`,
 }

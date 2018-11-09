@@ -10,6 +10,12 @@ app
   .then(() => {
     const server = express()
 
+    server.get(`/about`, (req, res) => {
+      const actualPage = `/about`
+      const queryParams = { slug: `about`, apiRoute: `page` }
+      app.render(req, res, actualPage, queryParams)
+    })
+
     server.get(`/projects`, (req, res) => {
       const actualPage = `/projects`
       const queryParams = { slug: `projects`, apiRoute: `page` }
