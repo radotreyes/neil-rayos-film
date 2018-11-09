@@ -1,12 +1,6 @@
-@import 'buttons';
-@import 'footer';
-@import 'hero';
-@import 'layout';
-@import 'logo';
-@import 'long-story';
-@import 'main-content';
-@import 'nav';
-@import 'projects';
+@import './partials/index';
+@import './components/index';
+@import './pages/index';
 @import 'theme';
 
 :root {
@@ -17,6 +11,7 @@
 @for $i from 1 through 6 {
   $header-sizes: nth(2rem 1.75rem 1.5rem 1.25rem 1.125rem 1rem, $i);
   $marquee-sizes: nth(4rem 3rem 2.5rem 2.25rem 1.75rem 1.5rem, $i);
+
   h#{$i} {
     font-weight: 300;
     font-size: $header-sizes;
@@ -35,6 +30,7 @@
   }
 
   h#{$i}.lead {
+    position: relative;
     text-transform: uppercase;
 
     &:after {
@@ -47,6 +43,8 @@
       border-top: 1px solid $theme-red;
     }
     &--center {
+      text-align: center;
+      text-transform: uppercase;
       &:after {
         position: absolute;
         content: '';
@@ -62,6 +60,7 @@
 
 body {
   background: $theme-gradient;
+  min-height: 100vh;
   /* main text is #FCFCFC */
   color: $theme-light;
   .subtext {
@@ -87,4 +86,8 @@ body {
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+
+  &--main {
+    padding: 2.5rem 5rem 0;
+  }
 }

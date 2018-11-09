@@ -4,7 +4,7 @@ import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
 import Layout from '../components/Layout'
 import Nav from '../components/Nav'
-import ScreenWrapper from '../components/GridWrapper'
+import ScreenWrapper from '../components/ScreenWrapper'
 import PageWrapper from '../components/PageWrapper'
 import config from '../config'
 
@@ -31,12 +31,74 @@ class Project extends Component {
     if (!project.title) return <Error statusCode={404} />
 
     return (
-      <ScreenWrapper screen={`${slug}`}>
+      <ScreenWrapper main spanInline screen={`${slug}`}>
         {() => (
           <Fragment>
             {/* <Nav /> */}
             <Layout>
-              <h1>{project.title.rendered}</h1>
+              <h1 className="lead--center">{project.title.rendered}</h1>
+              <div className="project__iframe-wrapper">
+                <iframe
+                  className="project__video-embed"
+                  title={project.title.rendered}
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/kewXtkGmDtw"
+                  frameBorder="0"
+                  allowFullScreen
+                />
+              </div>
+              <div className="project__video-padding" />
+              <div className="project__body">
+                <ul className="project__nav">
+                  <li className="active">Synopsis</li>
+                  <li>Production</li>
+                  <li>Director's Thoughts</li>
+                </ul>
+                <div className="project__description">
+                  <h1 className="project__header lead">header</h1>
+                  <p>
+                    Lorem ipsum dolor amet wayfarers edison bulb gochujang,
+                    lo-fi 90's blog +1 normcore cardigan umami slow-carb
+                    asymmetrical. Try-hard microdosing tumblr tacos, yr kale
+                    chips mumblecore bicycle rights shaman tumeric trust fund.
+                    Kogi distillery meditation godard flexitarian hell of jean
+                    shorts raw denim leggings butcher salvia yr. Put a bird on
+                    it umami heirloom blue bottle forage biodiesel. Shabby chic
+                    humblebrag gochujang, tofu chambray bicycle rights keffiyeh
+                    flannel brunch raw denim you probably haven't heard of them
+                    gastropub chillwave keytar.
+                  </p>
+                  <img
+                    src="https://res.cloudinary.com/try-coding-its-fun/image/upload/v1540331264/10-14-Night.jpg"
+                    alt="puppy"
+                  />
+                  <p>
+                    Lorem ipsum dolor amet wayfarers edison bulb gochujang,
+                    lo-fi 90's blog +1 normcore cardigan umami slow-carb
+                    asymmetrical. Try-hard microdosing tumblr tacos, yr kale
+                    chips mumblecore bicycle rights shaman tumeric trust fund.
+                    Kogi distillery meditation godard flexitarian hell of jean
+                    shorts raw denim leggings butcher salvia yr. Put a bird on
+                    it umami heirloom blue bottle forage biodiesel. Shabby chic
+                    humblebrag gochujang, tofu chambray bicycle rights keffiyeh
+                    flannel brunch raw denim you probably haven't heard of them
+                    gastropub chillwave keytar.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor amet wayfarers edison bulb gochujang,
+                    lo-fi 90's blog +1 normcore cardigan umami slow-carb
+                    asymmetrical. Try-hard microdosing tumblr tacos, yr kale
+                    chips mumblecore bicycle rights shaman tumeric trust fund.
+                    Kogi distillery meditation godard flexitarian hell of jean
+                    shorts raw denim leggings butcher salvia yr. Put a bird on
+                    it umami heirloom blue bottle forage biodiesel. Shabby chic
+                    humblebrag gochujang, tofu chambray bicycle rights keffiyeh
+                    flannel brunch raw denim you probably haven't heard of them
+                    gastropub chillwave keytar.
+                  </p>
+                </div>
+              </div>
             </Layout>
           </Fragment>
         )}

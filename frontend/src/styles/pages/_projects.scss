@@ -2,10 +2,23 @@
 @import 'theme';
 
 .projects-page {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
   position: relative;
-  left: 10vw;
-  width: 80vw;
+  width: 100vw;
   height: 100vw;
+
+  h1 {
+    flex-basis: 100%;
+    height: 2rem;
+  }
+
+  &__masonry {
+    display: flex;
+    margin-top: 1rem;
+    flex-basis: calc(100% - 10rem);
+  }
 }
 
 .masonry__project-anchor {

@@ -41,13 +41,13 @@ class Projects extends Component {
     if (!page.title) return <Error statusCode={404} />
 
     return (
-      <ScreenWrapper screen="all-projects">
+      <ScreenWrapper main screen="all-projects">
         {() => (
           <Fragment>
             <Layout>
               <section className="projects-page">
                 <h1 className="lead">MY WORK</h1>
-                <Masonry>
+                <Masonry className="projects-page__masonry">
                   {projectImages.map(({ image, slug, link }) => (
                     <Link href={`project/${slug}`} as={`project/${slug}`}>
                       <a className="masonry__project-anchor">

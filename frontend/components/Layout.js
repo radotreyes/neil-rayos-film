@@ -7,9 +7,7 @@ import Nav from './Nav'
 
 const Layout = ({ children }) => (
   <Fragment>
-    <main className="main-content">
-      <div className>{children}</div>
-    </main>
+    <main className="main-content">{children}</main>
     {/* <Footer /> */}
   </Fragment>
 )
