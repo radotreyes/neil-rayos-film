@@ -134,7 +134,7 @@
                             "key": "field_5bda77ff137ed",
                             "label": "Top Right",
                             "name": "topright",
-                            "type": "text",
+                            "type": "image",
                             "instructions": "Select file to be displayed as the top-right featured image.",
                             "required": 1,
                             "conditional_logic": 0,
@@ -143,17 +143,22 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         },
                         {
                             "key": "field_5bda7842137ee",
                             "label": "Middle",
                             "name": "middle",
-                            "type": "text",
+                            "type": "image",
                             "instructions": "Select file to be displayed as the middle featured image.",
                             "required": 1,
                             "conditional_logic": 0,
@@ -162,17 +167,22 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         },
                         {
                             "key": "field_5bda7852137ef",
                             "label": "Bottom Left",
                             "name": "bottomleft",
-                            "type": "text",
+                            "type": "image",
                             "instructions": "Select file to be displayed as the bottom-left featured image.",
                             "required": 1,
                             "conditional_logic": 0,
@@ -181,11 +191,16 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         }
                     ]
                 }
@@ -261,9 +276,9 @@
                     "sub_fields": [
                         {
                             "key": "field_5bdb9bafd91bb",
-                            "label": "Top Right",
-                            "name": "topright",
-                            "type": "text",
+                            "label": "Project Image 1",
+                            "name": "first",
+                            "type": "image",
                             "instructions": "Select file to be displayed as the top-right featured image.",
                             "required": 1,
                             "conditional_logic": 0,
@@ -272,17 +287,22 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         },
                         {
                             "key": "field_5bdb9bafd91bc",
-                            "label": "Middle",
-                            "name": "middle",
-                            "type": "text",
+                            "label": "Project Image 2",
+                            "name": "second",
+                            "type": "image",
                             "instructions": "Select file to be displayed as the middle featured image.",
                             "required": 1,
                             "conditional_logic": 0,
@@ -291,17 +311,22 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         },
                         {
                             "key": "field_5bdb9bafd91bd",
-                            "label": "Bottom Left",
-                            "name": "bottomleft",
-                            "type": "text",
+                            "label": "Project Image 3",
+                            "name": "third",
+                            "type": "image",
                             "instructions": "Select file to be displayed as the bottom-left featured image.",
                             "required": 1,
                             "conditional_logic": 0,
@@ -310,11 +335,16 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         }
                     ]
                 }
@@ -462,8 +492,10 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": 1,
     "description": "",
-    "modified": 1541729873
+    "modified": 1541811559
 }

@@ -15,15 +15,17 @@ export default class LongStory extends Component {
       projects: PropTypes.object.isRequired,
       about: PropTypes.object.isRequired,
     }).isRequired,
+    youtube: PropTypes.string.isRequired,
   }
 
   render() {
     const {
       fields: { intro, projects, about },
+      youtube,
     } = this.props
     return (
       <Fragment>
-        <Introduction fields={intro} />
+        <Introduction fields={intro} youtube={youtube} />
         <Projects fields={projects} />
         <About fields={about} />
       </Fragment>

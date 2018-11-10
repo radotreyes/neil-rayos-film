@@ -91,3 +91,25 @@ body {
     padding: 2.5rem 5rem 0;
   }
 }
+
+a {
+  &.text-link {
+    color: $theme-light;
+    text-decoration: none;
+    transition: $x-decel-hang;
+
+    &:hover {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+svg {
+  transition: $x-decel-primary;
+
+  &:hover {
+    path {
+      fill: $theme-sub;
+    }
+  }
+}

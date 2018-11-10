@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+
+import Link from 'next/link'
 import Header from '../Header'
 import ScreenWrapper from '../ScreenWrapper'
 import Button from '../Button'
@@ -36,9 +38,9 @@ export default class LongStory extends Component {
               <p className="left__body subtext">{left_panel.body}</p>
               <h4>
                 <RightArrow />
-                <a href="" className="text-link">
-                  MY STORY
-                </a>
+                <Link as="/about" href="/about">
+                  <a className="text-link">MY STORY</a>
+                </Link>
               </h4>
             </div>
             <div className="long-story__about--right">

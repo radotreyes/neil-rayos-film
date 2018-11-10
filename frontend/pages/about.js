@@ -2,32 +2,47 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
+
 import Layout from '../components/Layout'
 import Nav from '../components/Nav'
 import ScreenWrapper from '../components/ScreenWrapper'
 import PageWrapper from '../components/PageWrapper'
 import config from '../config'
+import Button from '../components/Button'
+import Instagram from '../svgs/instagram.svg'
+import YouTube from '../svgs/youtube.svg'
+import Twitter from '../svgs/twitter.svg'
+import Location from '../svgs/location.svg'
 
 class About extends Component {
-  // static propTypes = {
-  //   project: PropTypes.array.isRequired,
-  // }
+  static propTypes = {
+    page: PropTypes.object.isRequired,
+    acf: PropTypes.object.isRequired,
+  }
 
-  static async getInitialProps(ctx) {
-    // const { slug } = ctx.query
-    // const { apiUrl } = config
-    // const projectRes = await fetch(
-    //   `${apiUrl}/wp-json/wp/v2/projects?_embed&slug=${slug}`,
-    // )
-    // const project = await projectRes.json()
-    // return { project: project[0] }
+  static async getInitialProps() {
+    const { apiUrl, about } = config
+    const pageRes = await fetch(`${apiUrl}/${about}`)
+    const page = await pageRes.json()
+    return { page, acf: page.acf }
   }
 
   render() {
-    // const { project } = this.props
-    // const { slug } = project
+    const { page, acf } = this.props
+    const {
+      content: { rendered: content },
+    } = page
+    const {
+      name,
+      title,
+      location,
+      button_text,
+      resume,
+      you,
+      social_media: { twitter, youtube, instagram },
+    } = acf
 
-    // if (!project.title) return <Error statusCode={404} />
+    if (!page.title) return <Error statusCode={404} />
 
     return (
       <ScreenWrapper main spanInline screen="about">
@@ -35,67 +50,57 @@ class About extends Component {
           <Fragment>
             {/* <Nav /> */}
             <Layout>
-              <h1 className="lead--center">About Page Placeholder</h1>
-              <div className="project__iframe-wrapper">
-                <iframe
-                  className="project__video-embed"
-                  title="Placeholder"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/kewXtkGmDtw"
-                  frameBorder="0"
-                  allowFullScreen
-                />
-              </div>
-              <div className="project__video-padding" />
-              <div className="project__body">
-                <ul className="project__nav">
-                  <li className="active">Synopsis</li>
-                  <li>Production</li>
-                  <li>Director's Thoughts</li>
-                </ul>
-                <div className="project__description">
-                  <h1 className="project__header lead">header</h1>
-                  <p>
-                    Lorem ipsum dolor amet wayfarers edison bulb gochujang,
-                    lo-fi 90's blog +1 normcore cardigan umami slow-carb
-                    asymmetrical. Try-hard microdosing tumblr tacos, yr kale
-                    chips mumblecore bicycle rights shaman tumeric trust fund.
-                    Kogi distillery meditation godard flexitarian hell of jean
-                    shorts raw denim leggings butcher salvia yr. Put a bird on
-                    it umami heirloom blue bottle forage biodiesel. Shabby chic
-                    humblebrag gochujang, tofu chambray bicycle rights keffiyeh
-                    flannel brunch raw denim you probably haven't heard of them
-                    gastropub chillwave keytar.
-                  </p>
-                  <img
-                    src="https://res.cloudinary.com/try-coding-its-fun/image/upload/v1540331264/10-14-Night.jpg"
-                    alt="puppy"
+              <div className="about__wrapper">
+                <div className="about__body">
+                  <h1 className="about__header lead">about me</h1>
+                  <div className="about__profile">
+                    <section
+                      className="profile__profile-picture"
+                      style={{
+                        background: `url(${you.url})`,
+                        backgroundSize: `cover`,
+                      }}
+                    >
+                      1
+                    </section>
+                    <section className="profile__me">
+                      <div className="me__wrapper">
+                        <div className="me__me">{name}</div>
+                        <div className="me__social-media">
+                          <a href={youtube}>
+                            <YouTube />
+                          </a>
+                          <a href={instagram}>
+                            <Instagram />
+                          </a>
+                          <a href={twitter}>
+                            <Twitter />
+                          </a>
+                        </div>
+                      </div>
+                      <div className="me__title">{title}</div>
+                      <div className="me__location">
+                        <Location />
+                        {location}
+                      </div>
+                      <Button
+                        type="button"
+                        theme="secondary"
+                        value={button_text}
+                      />
+                    </section>
+                  </div>
+                  <div
+                    className="about__desc"
+                    dangerouslySetInnerHTML={{ __html: content }}
                   />
-                  <p>
-                    Lorem ipsum dolor amet wayfarers edison bulb gochujang,
-                    lo-fi 90's blog +1 normcore cardigan umami slow-carb
-                    asymmetrical. Try-hard microdosing tumblr tacos, yr kale
-                    chips mumblecore bicycle rights shaman tumeric trust fund.
-                    Kogi distillery meditation godard flexitarian hell of jean
-                    shorts raw denim leggings butcher salvia yr. Put a bird on
-                    it umami heirloom blue bottle forage biodiesel. Shabby chic
-                    humblebrag gochujang, tofu chambray bicycle rights keffiyeh
-                    flannel brunch raw denim you probably haven't heard of them
-                    gastropub chillwave keytar.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor amet wayfarers edison bulb gochujang,
-                    lo-fi 90's blog +1 normcore cardigan umami slow-carb
-                    asymmetrical. Try-hard microdosing tumblr tacos, yr kale
-                    chips mumblecore bicycle rights shaman tumeric trust fund.
-                    Kogi distillery meditation godard flexitarian hell of jean
-                    shorts raw denim leggings butcher salvia yr. Put a bird on
-                    it umami heirloom blue bottle forage biodiesel. Shabby chic
-                    humblebrag gochujang, tofu chambray bicycle rights keffiyeh
-                    flannel brunch raw denim you probably haven't heard of them
-                    gastropub chillwave keytar.
-                  </p>
+                </div>
+                <div className="about__cv">
+                  <h1 className="about__header lead">resume</h1>
+                  <div
+                    className="cv__cv"
+                    dangerouslySetInnerHTML={{ __html: resume }}
+                  />
                 </div>
               </div>
             </Layout>

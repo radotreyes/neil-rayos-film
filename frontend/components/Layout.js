@@ -7,13 +7,13 @@ import Nav from './Nav'
 
 const Layout = ({ children }) => (
   <Fragment>
+    <Nav />
     <main className="main-content">{children}</main>
-    {/* <Footer /> */}
   </Fragment>
 )
 
 Layout.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
 }
 
 export default Layout

@@ -165,24 +165,6 @@
           fill: $theme-sub;
         }
       }
-
-      .text-link {
-        color: $theme-light;
-        text-decoration: none;
-        transition: $x-decel-hang;
-
-        &:hover {
-          margin-left: 0.5rem;
-          #{$this} {
-            svg {
-              path {
-                fill: $theme-red;
-              }
-            }
-            margin-left: 1rem;
-          }
-        }
-      }
     }
   }
 }

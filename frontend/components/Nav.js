@@ -1,40 +1,33 @@
 import React, { Component, Fragment } from 'react'
-import Link from 'next/link'
+import PropTypes from 'prop-types'
+
 import MenuContext from '../context/menuContext'
 import getMenuProps from '../helpers/getMenuProps'
-import Logo from './Logo'
-import Footer from './Footer'
 
 export default class Nav extends Component {
-  state = {
-    windowIsLandscape: true,
+  static propTypes = {
+    breakpoints: PropTypes.string,
   }
 
-  componentDidMount = () => {
-    window.addEventListener(`resize`, this.handleResize)
+  static defaultProps = {
+    breakpoints: `none`,
   }
 
-  handleResize = () => {
-    this.setState(() => {
-      const { innerHeight, innerWidth } = window
-      return { windowIsLandscape: innerWidth > innerHeight }
-    })
+  constructor(props) {
+    super(props)
+
+    this.nav = React.createRef()
   }
+
+  handleScroll = () => {}
 
   render() {
-    const { windowIsLandscape } = this.state
     return (
       <nav className="nav">
         <MenuContext.Consumer>
-          {({ navMenu }) => (
+          {({ headerMenu }) => (
             <Fragment>
-              <Link href="/">
-                <a className="logo">
-                  <Logo />
-                </a>
-              </Link>
-              {getMenuProps({ ...navMenu, linkClassName: `nav__link` })}
-              {windowIsLandscape && <Footer windowIsLandscape />}
+              {getMenuProps({ ...headerMenu, linkClassName: `nav__link` })}
             </Fragment>
           )}
         </MenuContext.Consumer>

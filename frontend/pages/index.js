@@ -15,18 +15,17 @@ class Index extends Component {
   static propTypes = {
     // headerMenu: PropTypes.object.isRequired,
     acf: PropTypes.object.isRequired,
+    social: PropTypes.object.isRequired,
   }
 
   static async getInitialProps() {
-    const { apiUrl, frontPage, media } = config
-    const pageRes = await fetch(
-      `${apiUrl}/wp-json/postlight/v1/page?slug=welcome`,
-    )
+    const { apiUrl, frontPage, about } = config
+    const pageRes = await fetch(`${apiUrl}/${frontPage}`)
     const page = await pageRes.json()
 
-    const acfRes = await fetch(`${apiUrl}/${frontPage}`)
-    const { acf } = await acfRes.json()
-    return { page, acf }
+    const socialRes = await fetch(`${apiUrl}/${about}`)
+    const social = await socialRes.json()
+    return { acf: page.acf, social: social.acf.social_media }
   }
 
   render() {
@@ -34,14 +33,21 @@ class Index extends Component {
       acf: {
         hero, intro, projects, about,
       },
+      social,
     } = this.props
 
     return (
-      <Fragment>
-        {/* <Nav /> */}
-        <Hero fields={hero} />
-        <LongStory fields={{ intro, projects, about }} />
-      </Fragment>
+      <Layout>
+        <Hero fields={hero} social={social} />
+        <LongStory
+          fields={{
+            intro,
+            projects,
+            about,
+          }}
+          youtube={social.youtube}
+        />
+      </Layout>
     )
   }
 }

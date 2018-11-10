@@ -15,16 +15,13 @@ class Projects extends Component {
     projects: PropTypes.array.isRequired,
   }
 
-  static async getInitialProps(ctx) {
-    const { slug, apiRoute } = ctx.query
-    console.log(slug, apiRoute)
+  static async getInitialProps() {
     const { apiUrl } = config
     const pageRes = await fetch(`${apiUrl}/projects`)
     const page = await pageRes.json()
 
     const projectsRes = await fetch(`${apiUrl}/wp-json/wp/v2/projects?_embed`)
     const projects = await projectsRes.json()
-    console.log(projects)
     return { page, projects }
   }
 

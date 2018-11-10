@@ -2,32 +2,25 @@
 
 nav.nav {
   /* sticky */
-  position: sticky;
-  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  height: 0;
+  width: 100vw;
+  padding: 1.5rem 0 1.5rem 0;
   top: 0;
+  right: 1.5rem;
+  visibility: visible;
+  z-index: 9999999999999999; /* yes, if you're reading the source code, this is definitely 100% absolutely a best practice */
 
-  /* placement */
-  grid-area: nav;
-  padding-top: 1rem;
-
-  /* flexbox */
-  @include landscape {
-    @include flex(column, nowrap) {
-      justify-content: stretch;
-      align-items: center;
-    }
-  }
-
-  @include portrait {
-    @include flex(row, nowrap) {
-      justify-content: stretch;
-      align-items: stretch;
-    }
+  .hidden {
+    visibility: hidden;
   }
 
   /* children */
   .nav__link {
-    color: $theme-secondary;
+    color: $theme-sub;
     font-size: 0.9rem;
     font-weight: 600;
     margin: 1rem 0;
@@ -35,23 +28,12 @@ nav.nav {
     padding: 0.5rem;
     position: relative;
     text-decoration: none;
+    text-transform: uppercase;
     transition: $x-decel-hang;
-
-    &:after {
-      background-color: $theme-dark;
-      border: 1px solid $theme-dark;
-      content: '';
-      height: 1rem;
-      position: absolute;
-      transform: translateX(2rem);
-      transition: $x-accel-primary;
-      width: 100%;
-      z-index: -1;
-    }
 
     &:hover {
       color: $theme-light;
-      margin-left: 0.75rem;
+      transform: translateX(-0.5rem);
 
       &:after {
         transform: translateX(calc(-100% + 0.5rem));

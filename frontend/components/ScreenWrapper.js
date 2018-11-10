@@ -22,8 +22,13 @@ const ScreenWrapper = ({
 ScreenWrapper.propTypes = {
   children: PropTypes.func.isRequired,
   screen: PropTypes.string.isRequired,
-  spanInline: PropTypes.bool.isRequired,
-  main: PropTypes.bool.isRequired,
+  spanInline: PropTypes.bool,
+  main: PropTypes.bool,
+}
+
+ScreenWrapper.defaultProps = {
+  main: false,
+  spanInline: false,
 }
 
 export default ScreenWrapper
