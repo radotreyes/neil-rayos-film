@@ -219,52 +219,14 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
+            "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_5bdb9bafd91b8",
-                    "label": "Header",
-                    "name": "header",
-                    "type": "text",
-                    "instructions": "Specify text to be shown as header for Introduction section. (e.g. \"My name is Neil Rayos\")",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5bdb9bafd91b9",
-                    "label": "Body",
-                    "name": "body",
-                    "type": "textarea",
-                    "instructions": "Specify body text for Introduction section.",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": "",
-                    "new_lines": ""
-                },
-                {
                     "key": "field_5bdb9bafd91ba",
-                    "label": "Stills",
-                    "name": "stills",
-                    "type": "group",
-                    "instructions": "Select files to be used as featured images in the introduction section.",
+                    "label": "Categories",
+                    "name": "categories",
+                    "type": "repeater",
+                    "instructions": "Define up to three categories for films you'd like to showcase on the front page.",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -272,14 +234,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "",
+                    "collapsed": "",
+                    "min": 1,
+                    "max": 3,
+                    "layout": "table",
+                    "button_label": "",
                     "sub_fields": [
                         {
-                            "key": "field_5bdb9bafd91bb",
-                            "label": "Project Image 1",
-                            "name": "first",
-                            "type": "image",
-                            "instructions": "Select file to be displayed as the top-right featured image.",
+                            "key": "field_5bf2f8655b769",
+                            "label": "Name",
+                            "name": "name",
+                            "type": "text",
+                            "instructions": "What is the name of this category?",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -287,23 +253,18 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": ""
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         },
                         {
-                            "key": "field_5bdb9bafd91bc",
-                            "label": "Project Image 2",
-                            "name": "second",
-                            "type": "image",
-                            "instructions": "Select file to be displayed as the middle featured image.",
+                            "key": "field_5bf2f91fe9fb3",
+                            "label": "Description",
+                            "name": "description",
+                            "type": "textarea",
+                            "instructions": "Enter a short text description about your work in this category.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -311,23 +272,18 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": ""
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": "",
+                            "new_lines": ""
                         },
                         {
-                            "key": "field_5bdb9bafd91bd",
-                            "label": "Project Image 3",
-                            "name": "third",
+                            "key": "field_5bf2f93ae9fb4",
+                            "label": "Featured Image",
+                            "name": "featured_image",
                             "type": "image",
-                            "instructions": "Select file to be displayed as the bottom-left featured image.",
+                            "instructions": "Select an image for this category that you would like to feature in the Projects Section slideshow.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -335,8 +291,8 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
+                            "return_format": "url",
+                            "preview_size": "medium",
                             "library": "all",
                             "min_width": "",
                             "min_height": "",
@@ -497,5 +453,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1541811559
+    "modified": 1542650288
 }

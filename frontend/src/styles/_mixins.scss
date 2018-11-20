@@ -29,3 +29,42 @@
   padding-top: 56.25% * ($base-width / 100%);
   width: $base-width;
 }
+
+@mixin use-lead-headers {
+  @for $i from 1 through 6 {
+    $header-sizes: nth(2rem 1.75rem 1.5rem 1.25rem 1.125rem 1rem, $i);
+    $marquee-sizes: nth(4rem 3rem 2.5rem 2.25rem 1.75rem 1.5rem, $i);
+
+    h#{$i} {
+      font-weight: 300;
+      font-size: $header-sizes;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-transform: uppercase;
+
+      &:after {
+        position: absolute;
+        content: '';
+        width: $marquee-sizes;
+        left: 0.15vw;
+        transform: translateY($header-sizes);
+        margin-top: 1rem;
+        border-top: 1px solid $theme-red;
+      }
+      &--center {
+        text-align: center;
+        text-transform: uppercase;
+        &:after {
+          position: absolute;
+          content: '';
+          width: $marquee-sizes;
+          left: 50%;
+          transform: translate(-0.5 * $marquee-sizes, $header-sizes);
+          margin-top: 1rem;
+          border-top: 1px solid $theme-red;
+        }
+      }
+    }
+  }
+}

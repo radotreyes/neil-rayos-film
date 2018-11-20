@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Header from '../Header'
 import ScreenWrapper from '../ScreenWrapper'
-import Button from '../Button'
 import YouTube from '../../svgs/youtube.svg'
 // import Footer from './Footer'
 

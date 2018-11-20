@@ -75,13 +75,16 @@
       justify-content: center;
       align-items: center;
       flex-basis: 60%;
+      overflow-x: hidden;
 
       .viewbox {
         &__screen {
           @include aspect-ratio(16, 9, 70%);
+          position: relative;
           background-color: $theme-darker;
-          border: 20px solid black;
-          border-radius: 10px;
+          border: 5px solid rgba($theme-darker, 0.9);
+          border-radius: 5px;
+          transition: $x-decel-trailing;
         }
       }
     }
@@ -95,37 +98,45 @@
       flex-basis: 40%;
 
       ul {
+        position: relative;
         padding-left: 0;
         width: 70%;
+
+        .carousel-marker {
+          position: absolute;
+          background-color: $theme-darker;
+          border-radius: 5px;
+          border-left: 2px solid $theme-red;
+          color: $theme-darker;
+          transition: $x-decel-primary;
+          z-index: -1;
+        }
+
         li {
           color: $theme-sub;
+          height: 1.5rem;
           list-style-type: none;
+          margin-bottom: 1rem;
+          overflow-y: hidden;
           padding: 1rem;
+          transition: $x-decel-primary;
 
           p {
-            display: none;
+            color: $theme-sub;
+          }
+
+          h3 {
+            cursor: pointer;
           }
 
           h5 {
-            display: none;
+            margin-bottom: 0.25rem;
           }
 
           &.active {
-            background-color: $theme-darker;
-            border-radius: 5px;
-            border-left: 2px solid $theme-red;
             color: $theme-light;
-            margin-bottom: 1rem;
-
-            p {
-              display: block;
-              color: $theme-sub;
-            }
-
-            h5 {
-              display: block;
-              margin-bottom: 0.25rem;
-            }
+            height: auto;
+            margin-left: 2px;
           }
         }
       }
