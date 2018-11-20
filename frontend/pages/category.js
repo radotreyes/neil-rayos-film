@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
+import uuidv4 from 'uuid/v4'
+
 import Layout from '../components/Layout'
 import GridWrapper from '../components/GridWrapper'
 import PageWrapper from '../components/PageWrapper'
@@ -12,7 +14,7 @@ import config from '../config'
 class Category extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
-    photos: PropTypes.array.isRequired,
+    projects: PropTypes.array.isRequired,
   }
 
   static async getInitialProps(context) {
@@ -23,46 +25,47 @@ class Category extends Component {
     const categories = await categoriesRes.json()
     if (categories.length > 0) {
       const postsRes = await fetch(
-        `${config.apiUrl}/wp-json/wp/v2/photos?_embed&categories=${
+        `${config.apiUrl}/wp-json/wp/v2/projects?_embed&categories=${
           categories[0].id
         }`,
       )
-      const photos = await postsRes.json()
-      return { categories, photos }
+      const projects = await postsRes.json()
+      return { categories, projects }
     }
     return { categories }
   }
 
   render() {
-    const { categories, photos } = this.props
+    const { categories, projects } = this.props
     if (categories.length === 0) return <Error statusCode={404} />
 
-    const allPhotos = photos.map((photo, index) => (
-      <ul key={index}>
+    const allprojects = projects.map(project => (
+      <ul key={uuidv4()}>
         <li>
           <Fragment>
             <Link
-              as={`/photo/${photo.slug}`}
-              href={`/photo?slug=${photo.slug}&apiRoute=photos`}
+              as={`/project/${project.slug}`}
+              href={`/project?slug=${project.slug}&apiRoute=projects`}
             >
-              <a>{photo.title.rendered}</a>
+              <a>{project.title.rendered}</a>
             </Link>
 
             <ul>
               <li>
                 id:
-                {photo.id}
+                {project.id}
               </li>
               <li>
                 title:
-                {photo.title.rendered}
+                {project.title.rendered}
               </li>
             </ul>
             <img
               src={
-                photo._embedded[`wp:featuredmedia`][0].media_details.sizes.full
-                  .source_url
+                project._embedded[`wp:featuredmedia`][0].media_details.sizes
+                  .full.source_url
               }
+              alt={project.title.rendered}
             />
           </Fragment>
         </li>
@@ -79,7 +82,7 @@ class Category extends Component {
                 {` `}
                 Posts
               </h1>
-              {allPhotos}
+              {allprojects}
             </Layout>
           </Fragment>
         )}

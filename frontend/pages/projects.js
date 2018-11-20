@@ -4,6 +4,7 @@ import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
 import Masonry from 'react-masonry-component'
+import uuidv4 from 'uuid/v4'
 import Layout from '../components/Layout'
 import ScreenWrapper from '../components/ScreenWrapper'
 import PageWrapper from '../components/PageWrapper'
@@ -16,8 +17,10 @@ class Projects extends Component {
   }
 
   static async getInitialProps() {
-    const { apiUrl } = config
-    const pageRes = await fetch(`${apiUrl}/projects`)
+    const { apiUrl, getPostlightEndpoint } = config
+    const pageRes = await fetch(
+      getPostlightEndpoint({ slug: `projects&_embed` }),
+    )
     const page = await pageRes.json()
 
     const projectsRes = await fetch(`${apiUrl}/wp-json/wp/v2/projects?_embed`)
@@ -45,8 +48,12 @@ class Projects extends Component {
               <section className="projects-page">
                 <h1 className="lead">MY WORK</h1>
                 <Masonry className="projects-page__masonry">
-                  {projectImages.map(({ image, slug, link }) => (
-                    <Link href={`project/${slug}`} as={`project/${slug}`}>
+                  {projectImages.map(({ image, slug }) => (
+                    <Link
+                      key={uuidv4()}
+                      href={`project/${slug}`}
+                      as={`project/${slug}`}
+                    >
                       <a className="masonry__project-anchor">
                         <img
                           className="masonry__project-image"

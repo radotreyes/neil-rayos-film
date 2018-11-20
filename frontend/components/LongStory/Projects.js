@@ -1,15 +1,14 @@
-import React, { Component, Fragment, createRef } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
-import Header from '../Header'
+import uuidv4 from 'uuid/v4'
+
 import ScreenWrapper from '../ScreenWrapper'
-import Button from '../Button'
 // import Footer from './Footer'
 
 export default class Projects extends Component {
   static propTypes = {
     fields: PropTypes.shape({
-      header: PropTypes.string.isRequired,
-      stills: PropTypes.object.isRequired,
+      categories: PropTypes.array.isRequired,
     }).isRequired,
   }
 
@@ -80,7 +79,11 @@ export default class Projects extends Component {
                   .
                 </div>
                 {categories.map(({ name, description }, i) => (
-                  <li className={!i ? `active` : ``} data-index={i}>
+                  <li
+                    key={uuidv4()}
+                    className={!i ? `active` : ``}
+                    data-index={i}
+                  >
                     <h3 onClick={this.handleCarouselClick}>{name}</h3>
                     <p>{description}</p>
                     <h5>

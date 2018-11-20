@@ -1,16 +1,14 @@
+const apiUrl = `http://localhost:8080`
+
 export default {
-  apiUrl: `http://localhost:8080`,
-  allData(query) {
-    return `wp-json/wp/v2/${query}`
+  apiUrl,
+  getRootEndpoint({ slug }) {
+    return `${apiUrl}/${slug}`
   },
-  singlePost(slug) {
-    return `wp-json/postlight/v1/post?slug=${slug}`
+  getWpEndpoint({ slug }) {
+    return `${apiUrl}/wp-json/wp/v2/pages?slug=projects${slug}`
   },
-  singleMediaPost(slug) {
-    return `wp-json/wp/photo?_embed`
+  getPostlightEndpoint({ slug }) {
+    return `${apiUrl}/wp-json/postlight/v1/page?slug=${slug}`
   },
-  frontPage: `/wp-json/postlight/v1/page?slug=front-page`,
-  projects: `/wp-json/postlight/v1/page?slug=projects`,
-  about: `/wp-json/postlight/v1/page?slug=about`,
-  media: `/wp-json/wp/v2/media`,
 }
