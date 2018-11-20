@@ -21,8 +21,8 @@ class About extends Component {
   }
 
   static async getInitialProps() {
-    const { apiUrl, about } = config
-    const pageRes = await fetch(`${apiUrl}/${about}`)
+    const { getPostlightEndpoint } = config
+    const pageRes = await fetch(getPostlightEndpoint({ slug: `about` }))
     const page = await pageRes.json()
     return { page, acf: page.acf }
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Header from '../Header'
 import ScreenWrapper from '../ScreenWrapper'
 import YouTube from '../../svgs/youtube.svg'
 // import Footer from './Footer'
@@ -11,9 +10,9 @@ export default class LongStory extends Component {
       header: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
       stills: PropTypes.shape({
-        topright: PropTypes.string.isRequired,
-        middle: PropTypes.string.isRequired,
-        bottomleft: PropTypes.string.isRequired,
+        topright: PropTypes.object.isRequired,
+        middle: PropTypes.object.isRequired,
+        bottomleft: PropTypes.object.isRequired,
       }).isRequired,
     }).isRequired,
     youtube: PropTypes.string.isRequired,
