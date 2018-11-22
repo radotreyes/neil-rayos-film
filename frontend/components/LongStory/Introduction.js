@@ -48,27 +48,21 @@ export default class LongStory extends Component {
                   background: `url(${topright.url})`,
                   backgroundSize: `cover`,
                 }}
-              >
-                1
-              </div>
+              />
               <div
                 className="introduction__still--2"
                 style={{
                   background: `url(${middle.url})`,
                   backgroundSize: `cover`,
                 }}
-              >
-                2
-              </div>
+              />
               <div
                 className="introduction__still--3"
                 style={{
                   background: `url(${bottomleft.url})`,
                   backgroundSize: `cover`,
                 }}
-              >
-                3
-              </div>
+              />
             </div>
           </div>
         )}

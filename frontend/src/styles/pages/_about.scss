@@ -33,6 +33,10 @@ $video-height: calc(#{$video-width} * 9 / 16);
       max-width: 100%;
       margin-bottom: 1em;
     }
+
+    @media screen and (orientation: portrait) {
+      padding: 0;
+    }
   }
 
   &__profile {
@@ -40,9 +44,16 @@ $video-height: calc(#{$video-width} * 9 / 16);
     flex-flow: row wrap;
     padding-top: 1rem;
 
+    @media screen and (orientation: portrait) {
+      flex-flow: column nowrap;
+    }
+
     .profile__profile-picture {
       $flex-basis: 60%;
       @include aspect-ratio(16, 9, $flex-basis);
+      @media screen and (orientation: portrait) {
+        @include aspect-ratio(16, 9, 100%);
+      }
       border-radius: 34px 1.7px 34px 1.7px;
       background-color: blue;
       flex-basis: $flex-basis;
@@ -107,6 +118,10 @@ $video-height: calc(#{$video-width} * 9 / 16);
     display: block;
     flex-basis: 100%;
     padding: 0 20%;
+
+    @media screen and (orientation: portrait) {
+      padding: 0;
+    }
 
     .cv {
       &__cv {

@@ -10,6 +10,11 @@
 
     grid-template-columns: 5vw 1fr 5vw;
     grid-template-rows: 5vh 1fr 10vh;
+
+    @media screen and (orientation: portrait) {
+      height: auto;
+      grid-template-rows: 20vh repeat(2, 1fr);
+    }
   }
 
   &__header {
@@ -36,6 +41,14 @@
   &__buttons {
     grid-area: 3 / 2 / 4 / 3;
     place-self: center;
+
+    @media screen and (orientation: portrait) {
+      display: flex;
+      flex-flow: column nowrap;
+
+      place-self: normal start;
+      margin: 1.5rem -0.75rem;
+    }
   }
 
   &__image {

@@ -18,7 +18,23 @@ export default class LongStory extends Component {
     youtube: PropTypes.string.isRequired,
   }
 
+  state = {
+    isWindowLandscape: true,
+  }
+
+  componentDidMount = () => {
+    this.handleResize()
+    window.addEventListener(`resize`, this.handleResize)
+  }
+
+  handleResize = () => {
+    this.setState({
+      isWindowLandscape: window.matchMedia(`(orientation: landscape)`).matches,
+    })
+  }
+
   render() {
+    const { isWindowLandscape } = this.state
     const {
       fields: { intro, projects, about },
       youtube,
@@ -26,7 +42,19 @@ export default class LongStory extends Component {
     return (
       <Fragment>
         <Introduction fields={intro} youtube={youtube} />
+        {!isWindowLandscape && (
+          <img
+            src={intro.stills.bottomleft.url}
+            style={{ width: `100%`, height: `56.25%` }}
+          />
+        )}
         <Projects fields={projects} />
+        {!isWindowLandscape && (
+          <img
+            src={intro.stills.middle.url}
+            style={{ width: `100%`, height: `56.25%` }}
+          />
+        )}
         <About fields={about} />
       </Fragment>
     )
