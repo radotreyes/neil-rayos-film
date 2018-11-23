@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import Archive from './Archive'
+import Footer from './Footer'
 
 import Nav from './Nav'
 
@@ -9,6 +9,7 @@ const Layout = ({ children }) => (
   <Fragment>
     <Nav />
     <main className="main-content">{children}</main>
+    <Footer />
   </Fragment>
 )
 

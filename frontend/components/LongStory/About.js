@@ -1,12 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Link from 'next/link'
-import Header from '../Header'
 import ScreenWrapper from '../ScreenWrapper'
-import Button from '../Button'
 import RightArrow from '../../svgs/right-arrow.svg'
-// import Footer from './Footer'
 
 export default class LongStory extends Component {
   static propTypes = {
@@ -50,7 +47,7 @@ export default class LongStory extends Component {
               <h4>
                 <RightArrow />
                 <a href="" className="text-link">
-                  LET'S WORK TOGETHER
+                  {`LET'S WORK TOGETHER`}
                 </a>
               </h4>
             </div>

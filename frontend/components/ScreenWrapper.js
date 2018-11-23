@@ -15,7 +15,6 @@ const ScreenWrapper = ({
     >
       {children()}
     </section>
-    {/* <Footer /> */}
   </Fragment>
 )
 

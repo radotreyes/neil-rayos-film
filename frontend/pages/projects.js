@@ -5,6 +5,8 @@ import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
 import Masonry from 'react-masonry-component'
 import uuidv4 from 'uuid/v4'
+
+import MenuContext from '../context/menuContext'
 import Layout from '../components/Layout'
 import ScreenWrapper from '../components/ScreenWrapper'
 import PageWrapper from '../components/PageWrapper'
@@ -37,38 +39,40 @@ class Projects extends Component {
       slug: project.slug,
       link: project.link,
     }))
+    const mapProjectImages = () => projectImages.map(({ image, slug }) => (
+      <Link key={uuidv4()} href={`project/${slug}`} as={`project/${slug}`}>
+        <a className="masonry__project-anchor">
+          <img className="masonry__project-image" src={image} alt={slug} />
+        </a>
+      </Link>
+    ))
 
     if (!page.title) return <Error statusCode={404} />
 
     return (
-      <ScreenWrapper main screen="all-projects">
-        {() => (
-          <Fragment>
-            <Layout>
-              <section className="projects-page">
-                <h1 className="lead">MY WORK</h1>
-                <Masonry className="projects-page__masonry">
-                  {projectImages.map(({ image, slug }) => (
-                    <Link
-                      key={uuidv4()}
-                      href={`project/${slug}`}
-                      as={`project/${slug}`}
-                    >
-                      <a className="masonry__project-anchor">
-                        <img
-                          className="masonry__project-image"
-                          src={image}
-                          alt={slug}
-                        />
-                      </a>
-                    </Link>
-                  ))}
-                </Masonry>
-              </section>
-            </Layout>
-          </Fragment>
-        )}
-      </ScreenWrapper>
+      <Fragment>
+        <Layout>
+          <ScreenWrapper main screen="all-projects">
+            {() => (
+              <MenuContext.Consumer>
+                {({ isWindowLandscape }) => (
+                  <section className="projects-page">
+                    <h1 className="lead">MY WORK</h1>
+                    <div className="projects-wrapper">
+                      {!isWindowLandscape && mapProjectImages()}
+                      {isWindowLandscape && (
+                        <Masonry className="projects-page__masonry">
+                          {mapProjectImages()}
+                        </Masonry>
+                      )}
+                    </div>
+                  </section>
+                )}
+              </MenuContext.Consumer>
+            )}
+          </ScreenWrapper>
+        </Layout>
+      </Fragment>
     )
   }
 }

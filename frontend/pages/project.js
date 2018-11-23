@@ -4,6 +4,7 @@ import React, { Component, Fragment, createRef } from 'react'
 import PropTypes from 'prop-types'
 import fetch from 'isomorphic-unfetch'
 import Error from 'next/error'
+import MenuContext from '../context/menuContext'
 import Layout from '../components/Layout'
 import ScreenWrapper from '../components/ScreenWrapper'
 import PageWrapper from '../components/PageWrapper'
@@ -37,10 +38,16 @@ class Project extends Component {
   navMarker = createRef()
 
   componentDidMount = () => {
+    // window.addEventListener(`resize`, this.setMarkerPosition)
     this.setMarkerPosition()
   }
 
+  // componentWillUnmount = () => {
+  //   window.removEventListener(`resize`, this.setMarkerPosition)
+  // }
+
   setMarkerPosition = () => {
+    if (!this.projectNav) return
     const activeItem = document.querySelector(`li.active`)
     const ul = this.projectNav.current
     const navMarker = this.navMarker.current
@@ -82,49 +89,88 @@ class Project extends Component {
     if (!project.title) return <Error statusCode={404} />
 
     return (
-      <ScreenWrapper main spanInline screen={`${slug}`}>
-        {() => (
-          <Fragment>
-            <Layout>
-              <h1 className="lead--center">{project.title.rendered}</h1>
-              <div className="project__iframe-wrapper">
-                <iframe
-                  className="project__video-embed"
-                  title={project.title.rendered}
-                  width="560"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                  frameBorder="0"
-                  allowFullScreen
-                />
-              </div>
-              <div className="project__video-padding" />
-              <div className="project__body">
-                <ul
-                  className="project__nav"
-                  ref={this.projectNav}
-                  onClick={this.handleMenuClick}
-                >
-                  <div className="project__nav--marker" ref={this.navMarker} />
-                  <li className="active" data-slide="synopsis">
-                    Synopsis
-                  </li>
-                  <li data-slide="production">Production</li>
-                  <li data-slide="directors_thoughts">
-                    {`Director's`}
-                    {` `}
-                    Thoughts
-                  </li>
-                </ul>
-                <div
-                  className="project__description"
-                  dangerouslySetInnerHTML={description}
-                />
-              </div>
-            </Layout>
-          </Fragment>
-        )}
-      </ScreenWrapper>
+      <Fragment>
+        <Layout>
+          <ScreenWrapper main spanInline screen={`${slug}`}>
+            {() => (
+              <MenuContext.Consumer>
+                {({ isWindowLandscape }) => (
+                  <Fragment>
+                    <h1
+                      className={`lead${
+                        isWindowLandscape ? `--center` : ``
+                      } project__header`}
+                    >
+                      {project.title.rendered}
+                    </h1>
+                    <div className="project__iframe-wrapper">
+                      <iframe
+                        className="project__video-embed"
+                        title={project.title.rendered}
+                        width="960px"
+                        height="auto"
+                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                        frameBorder="0"
+                        allowFullScreen
+                      />
+                    </div>
+                    {isWindowLandscape && (
+                      <div className="project__video-padding" />
+                    )}
+                    <div className="project__body">
+                      {isWindowLandscape && (
+                        <ul
+                          className="project__nav"
+                          ref={this.projectNav}
+                          onClick={this.handleMenuClick}
+                        >
+                          <div
+                            className="project__nav--marker"
+                            ref={this.navMarker}
+                          />
+                          <li className="active" data-slide="synopsis">
+                            Synopsis
+                          </li>
+                          <li data-slide="production">Production</li>
+                          <li data-slide="directors_thoughts">
+                            {`Director's`}
+                            {` `}
+                            Thoughts
+                          </li>
+                        </ul>
+                      )}
+                      {isWindowLandscape && (
+                        <div
+                          className="project__description"
+                          dangerouslySetInnerHTML={description}
+                        />
+                      )}
+                      {!isWindowLandscape && (
+                        <div>
+                          <div
+                            className="project__description"
+                            dangerouslySetInnerHTML={{ __html: acf.synopsis }}
+                          />
+                          <div
+                            className="project__description"
+                            dangerouslySetInnerHTML={{ __html: acf.production }}
+                          />
+                          <div
+                            className="project__description"
+                            dangerouslySetInnerHTML={{
+                              __html: acf.directors_thoughts,
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </Fragment>
+                )}
+              </MenuContext.Consumer>
+            )}
+          </ScreenWrapper>
+        </Layout>
+      </Fragment>
     )
   }
 }

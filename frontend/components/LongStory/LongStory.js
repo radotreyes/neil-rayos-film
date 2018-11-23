@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import Header from '../Header'
-import ScreenWrapper from '../ScreenWrapper'
-import Button from '../Button'
 import Introduction from './Introduction'
 import Projects from './Projects'
 import About from './About'
@@ -46,6 +43,7 @@ export default class LongStory extends Component {
           <img
             src={intro.stills.bottomleft.url}
             style={{ width: `100%`, height: `56.25%` }}
+            alt="bottom-left project still"
           />
         )}
         <Projects fields={projects} />
@@ -53,6 +51,7 @@ export default class LongStory extends Component {
           <img
             src={intro.stills.middle.url}
             style={{ width: `100%`, height: `56.25%` }}
+            alt="middle project still"
           />
         )}
         <About fields={about} />

@@ -45,11 +45,10 @@ class About extends Component {
     if (!page.title) return <Error statusCode={404} />
 
     return (
-      <ScreenWrapper main spanInline screen="about">
-        {() => (
-          <Fragment>
-            {/* <Nav /> */}
-            <Layout>
+      <Fragment>
+        <Layout>
+          <ScreenWrapper main spanInline screen="about">
+            {() => (
               <div className="about__wrapper">
                 <div className="about__body">
                   <h1 className="about__header lead">about me</h1>
@@ -103,10 +102,10 @@ class About extends Component {
                   />
                 </div>
               </div>
-            </Layout>
-          </Fragment>
-        )}
-      </ScreenWrapper>
+            )}
+          </ScreenWrapper>
+        </Layout>
+      </Fragment>
     )
   }
 }

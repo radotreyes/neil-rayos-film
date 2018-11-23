@@ -20,10 +20,16 @@ export default class Projects extends Component {
 
   componentDidMount = () => {
     this.setMarkerPosition()
+    window.addEventListener(`resize`, this.setMarkerPosition)
     this.carouselImage.current.style.backgroundSize = `cover`
   }
 
+  componentwillunmount = () => {
+    window.removeEventListener(`resize`, this.setMarkerPosition)
+  }
+
   setMarkerPosition = () => {
+    if (!this.carousel) return
     const activeItem = document.querySelector(`li.active`)
     const ul = this.carousel.current
     const carouselMarker = this.carouselMarker.current

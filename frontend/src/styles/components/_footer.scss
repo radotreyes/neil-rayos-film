@@ -1,67 +1,48 @@
 @import 'mixins';
 @import 'theme';
 
-footer.footer.landscape {
+.footer {
   display: flex;
-  align-items: center;
+  flex-flow: row wrap;
   justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: $theme-darker;
+  height: 20vh;
+  max-height: 350px;
+  width: 100vw;
 
-  @include landscape {
-    color: $theme-dark;
-    position: fixed;
-    bottom: 0;
-    background-color: $theme-light;
-    height: 3rem;
-    width: $width-nav;
+  .footer-menu {
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .footer__link {
+    color: $theme-sub;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    overflow: hidden;
+    padding: 0.5rem;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: $x-decel-hang;
 
-    a {
-      color: $theme-dark;
-    }
+    &:hover {
+      color: $theme-light;
+      transform: translateX(-0.5rem);
 
-    .svg-wrapper {
-      .hamburger__path--expanding {
-        transition: $x-accel-trailing;
+      &:after {
+        transform: translateX(calc(-100% + 0.5rem));
+        transition: $x-decel-leading;
       }
-      &:hover {
-        .hamburger__path--expanding {
-          transform: translateX(12px);
-          transform-origin: center;
-          transition: $x-decel-trailing;
-        }
-      }
     }
-
-    // #hamburger {
-    //   .hamburger__path--expanding {
-    //     transition: $x-decel-trailing;
-    //     d: path(
-    //       '
-    //         '
-    //         ' M 16,
-    //         22 H 4 c -1.104,
-    //         0-2,
-    //         0.896-2,
-    //         2 s 0.896,
-    //         2,
-    //         2,
-    //         2 h 12 c 1.104,
-    //         0,
-    //         2-0.896,
-    //         2-2.2 S 16,
-    //         22,
-    //         16,
-    //         22 z
-    //       '
-    //     );
-    //   }
-    //   &:hover {
-    //     .hamburger__path--expanding {
-    //       transition: $x-decel-leading;
-    //       d: path(
-    //         'M 28,22 H 4 c -1.104,0-2, 0.896-2,2 s 0.896,2, 2,2 h 24 c 1.104,0, 2-0.896,2-2 S 29.104,22, 28,22 z'
-    //       );
-    //     }
-    //   }
-    // }
+  }
+  .made-by {
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 0.5rem;
+    color: $theme-sub;
   }
 }

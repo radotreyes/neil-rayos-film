@@ -16,11 +16,15 @@
 
   &__masonry {
     display: flex;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     flex-basis: calc(100% - 10rem);
   }
 }
 
+.projects-wrapper {
+  margin: 0.5rem 0;
+  width: 100%;
+}
 .masonry__project-anchor {
   width: calc(20vw - 1rem);
   margin: 0 0.5rem 0.5rem 0;
@@ -34,5 +38,15 @@
   &:hover {
     width: 20vw;
     margin: 0 2rem 1rem 0;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .masonry__project-anchor,
+  .masonry__project-image {
+    width: 100%;
+    &:hover {
+      width: 100%;
+    }
   }
 }

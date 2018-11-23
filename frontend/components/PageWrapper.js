@@ -10,14 +10,31 @@ const PageWrapper = Comp => class extends Component {
     }
   }
 
-  render() {
-    const { menus } = this.props
-    return (
-      <MenuContext.Provider value={menus}>
-        <Comp {...this.props} />
-      </MenuContext.Provider>
-    )
-  }
+    state = {
+      isWindowLandscape: true,
+    }
+
+    componentDidMount = () => {
+      this.handleResize()
+      window.addEventListener(`resize`, this.handleResize)
+    }
+
+    handleResize = () => {
+      this.setState({
+        isWindowLandscape: window.matchMedia(`(orientation: landscape)`)
+          .matches,
+      })
+    }
+
+    render() {
+      const { menus } = this.props
+      const { isWindowLandscape } = this.state
+      return (
+        <MenuContext.Provider value={{ ...menus, isWindowLandscape }}>
+          <Comp {...this.props} />
+        </MenuContext.Provider>
+      )
+    }
 }
 
 export default PageWrapper
