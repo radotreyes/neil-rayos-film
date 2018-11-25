@@ -22,7 +22,7 @@
                     "label": "Hero Image",
                     "name": "featured_image",
                     "type": "image",
-                    "instructions": "Select a file to be used as the background image for the hero section. If this image is .gif, it will be trimmed to a maximum length of 15s.",
+                    "instructions": "Select a file to be used as the background image for the hero section (GIFs are okay). NOTE: If you choose to provide a Hero Video instead, the video will take priority in being displayed over the image.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -40,6 +40,22 @@
                     "max_height": "",
                     "max_size": "",
                     "mime_types": "gif, png, jpg, jpeg, webp"
+                },
+                {
+                    "key": "field_5bfa17653debc",
+                    "label": "Hero Video",
+                    "name": "featured_video",
+                    "type": "url",
+                    "instructions": "Provide a direct link (ex: URLs ending in .mp4, .webm, etc) to the video file to be used in the hero section . This video will autoplay indefinitely.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
                 },
                 {
                     "key": "field_5bda7d9fced17",
@@ -453,5 +469,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1542650288
+    "modified": 1543119091
 }

@@ -4,9 +4,11 @@
 .hero {
   &__grid {
     display: grid;
+    position: relative;
     background-attachment: fixed;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 
     grid-template-columns: 5vw 1fr 5vw;
     grid-template-rows: 5vh 1fr 10vh;
@@ -17,9 +19,24 @@
     }
   }
 
+  &__video {
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+    @media screen and (orientation: portrait) {
+      height: 100%;
+      width: auto;
+    }
+  }
+
   &__header {
     grid-area: 2 / 2 / 3 / 3;
     place-self: center;
+    z-index: 10;
 
     * {
       color: $theme-light;
@@ -41,6 +58,7 @@
   &__buttons {
     grid-area: 3 / 2 / 4 / 3;
     place-self: center;
+    z-index: 10;
 
     @media screen and (orientation: portrait) {
       display: flex;

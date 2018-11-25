@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Header from './Header'
@@ -16,19 +17,25 @@ export default class Hero extends Component {
 
   render() {
     const {
-      fields: { featured_image, featured_text },
+      fields: { featured_image, featured_video, featured_text },
       social: { youtube, instagram, twitter },
     } = this.props
+    const heroBgStyle = featured_video
+      ? { backgroundImage: `url('${featured_image}')` }
+      : {}
     return (
       <ScreenWrapper screen="hero">
         {() => (
           <Fragment>
-            <div
-              className="hero__grid"
-              style={{
-                backgroundImage: `url(${featured_image})`,
-              }}
-            >
+            <div className="hero__grid" style={heroBgStyle}>
+              <video
+                autoPlay
+                className="hero__video"
+                loop
+                src={`${featured_video}`}
+              >
+                social-butterfly.mp4
+              </video>
               <div className="hero__header">
                 <h1 className="jumbotron marquee">{featured_text}</h1>
                 <div className="header__svgs">

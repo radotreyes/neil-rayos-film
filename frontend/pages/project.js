@@ -38,16 +38,16 @@ class Project extends Component {
   navMarker = createRef()
 
   componentDidMount = () => {
-    // window.addEventListener(`resize`, this.setMarkerPosition)
+    window.addEventListener(`resize`, this.setMarkerPosition)
     this.setMarkerPosition()
   }
 
-  // componentWillUnmount = () => {
-  //   window.removEventListener(`resize`, this.setMarkerPosition)
-  // }
+  componentWillUnmount = () => {
+    window.removeEventListener(`resize`, this.setMarkerPosition)
+  }
 
   setMarkerPosition = () => {
-    if (!this.projectNav) return
+    if (!this.projectNav.current) return
     const activeItem = document.querySelector(`li.active`)
     const ul = this.projectNav.current
     const navMarker = this.navMarker.current

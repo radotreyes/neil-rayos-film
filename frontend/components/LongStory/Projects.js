@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import uuidv4 from 'uuid/v4'
 
 import ScreenWrapper from '../ScreenWrapper'
-// import Footer from './Footer'
 
 export default class Projects extends Component {
   static propTypes = {
@@ -29,7 +28,7 @@ export default class Projects extends Component {
   }
 
   setMarkerPosition = () => {
-    if (!this.carousel) return
+    if (!this.carousel.current) return
     const activeItem = document.querySelector(`li.active`)
     const ul = this.carousel.current
     const carouselMarker = this.carouselMarker.current
