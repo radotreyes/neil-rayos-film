@@ -31,6 +31,7 @@
   },
   "scripts": {
     "dev": "gatsby develop",
+    "deploy": "netlifyctl deploy -b public",
     "build": "gatsby build",
     "heroku-postbuild": "gatsby build",
     "serve": "gatsby serve",
