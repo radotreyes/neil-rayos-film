@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "express": "^4.16.2",
     "isomorphic-unfetch": "^2.0.0",
     "lodash": "^4.17.11",

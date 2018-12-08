@@ -1,7 +1,15 @@
+/* eslint-disable */
 const path = require(`path`)
 const glob = require(`glob`)
 
-module.exports = {
+const { PHASE_PRODUCTION_SERVER } =
+  process.env.NODE_ENV === `development`
+    ? {}
+    : !process.env.NOW
+      ? require(`next/constants`)
+      : require(`next-server/constants`)
+
+const CONFIG = {
   webpack: (config, { dev }) => {
     config.module.rules.push(
       {
@@ -35,4 +43,15 @@ module.exports = {
     )
     return config
   },
+}
+
+module.exports = (phase, { defaultConfig }) => {
+  if (phase === PHASE_PRODUCTION_SERVER) {
+    // Config used to run in production.
+    return {}
+  }
+
+  const withCSS = require(`@zeit/next-css`)
+
+  return withCSS(CONFIG)
 }

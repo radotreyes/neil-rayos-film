@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add loash
+  /usr/local/bin/node /usr/local/bin/yarn add next-css
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/loash: Not found
+  Error: https://registry.yarnpkg.com/next-css: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:61073:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:120166:22)
       at emitTwo (events.js:126:13)
@@ -49,6 +49,7 @@ npm manifest:
     "dependencies": {
       "express": "^4.16.2",
       "isomorphic-unfetch": "^2.0.0",
+      "lodash": "^4.17.11",
       "next": "^7.0.2",
       "prop-types": "^15.6.2",
       "react": "^16.5.2",
@@ -3759,7 +3760,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
     integrity sha1-0jM6NtnncXyK0vfKyv7HwytERmQ=
   
-  lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@~4.17.10:
+  lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@~4.17.10:
     version "4.17.11"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
     integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
