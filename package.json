@@ -8,14 +8,17 @@
     "url": "https://github.com/contentful/starter-gatsby-blog/issues"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "gatsby": "^1.9.277",
     "gatsby-image": "^1.0.55",
     "gatsby-link": "^1.6.46",
     "gatsby-plugin-react-helmet": "^1.0.8",
+    "gatsby-plugin-sass": "^2.0.7",
     "gatsby-plugin-sharp": "^1.6.46",
     "gatsby-source-contentful": "^1.3.54",
     "gatsby-transformer-remark": "^1.7.44",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "node-sass": "^4.10.0"
   },
   "homepage": "https://github.com/contentful/starter-gatsby-blog#readme",
   "keywords": [
@@ -36,5 +39,8 @@
     "heroku-postbuild": "gatsby build",
     "serve": "gatsby serve",
     "setup": "npm install --no-save contentful-import yargs-parser axios chalk && node ./setup.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0"
   }
 }
