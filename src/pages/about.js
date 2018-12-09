@@ -9,10 +9,10 @@ import ScreenWrapper from '../components/ScreenWrapper'
 // import PageWrapper from '../components/PageWrapper'
 // import config from '../config'
 import Button from '../components/Button'
-import Instagram from '../svgs/instagram.svg'
-import YouTube from '../svgs/youtube.svg'
-import Twitter from '../svgs/twitter.svg'
-import Location from '../svgs/location.svg'
+import Instagram from '../../static/svgs/instagram.svg'
+import YouTube from '../../static/svgs/youtube.svg'
+import Twitter from '../../static/svgs/twitter.svg'
+import Location from '../../static/svgs/location.svg'
 
 export default class About extends Component {
   // static propTypes = {
