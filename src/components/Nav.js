@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
+import Link from 'gatsby-link'
 import { throttle } from 'lodash'
-import MenuContext from '../context/menuContext'
-import getMenuProps from '../helpers/getMenuProps'
+// import MenuContext from '../context/menuContext'
+// import getMenuProps from '../helpers/getMenuProps'
 
 export default class Nav extends Component {
   state = {
@@ -36,13 +37,16 @@ export default class Nav extends Component {
     const { shouldShowNav } = this.state
     return (
       <nav className={`nav ${shouldShowNav ? `` : `hidden`}`}>
-        <MenuContext.Consumer>
+        {/* <MenuContext.Consumer>
           {({ headerMenu }) => (
             <Fragment>
               {getMenuProps({ ...headerMenu, linkClassName: `nav__link` })}
             </Fragment>
           )}
-        </MenuContext.Consumer>
+        </MenuContext.Consumer> */}
+        <Link to="/">Home</Link>
+        <Link to="/projects">Projects</Link>
+        <Link to="/about">About</Link>
       </nav>
     )
   }

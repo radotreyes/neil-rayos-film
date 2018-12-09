@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Link from 'next/link'
+import Link from 'gatsby-link'
 
 const Button = ({ theme, type, value }) => (
   <button type={type} className={`button--${theme}`}>
@@ -11,9 +11,9 @@ const Button = ({ theme, type, value }) => (
 )
 
 export const ButtonLink = ({
-  href, as, theme, type, value,
+  href, theme, type, value,
 }) => (
-  <Link href={href} as={as}>
+  <Link to={href}>
     <a>
       <Button type={type} theme={theme} value={value} />
     </a>
@@ -27,7 +27,6 @@ Button.propTypes = {
 }
 
 ButtonLink.propTypes = {
-  as: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

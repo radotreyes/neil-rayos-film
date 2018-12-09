@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import MenuContext from '../context/menuContext'
-import getMenuProps from '../helpers/getMenuProps'
+// import MenuContext from '../context/menuContext'
+// import getMenuProps from '../helpers/getMenuProps'
 
 export default class Footer extends Component {
   render() {
     return (
       <footer className="footer">
-        <span className="footer-menu">
+        {/* <span className="footer-menu">
           <MenuContext.Consumer>
             {({ footerMenu }) => (
               <Fragment>
@@ -16,7 +16,7 @@ export default class Footer extends Component {
           </MenuContext.Consumer>
         </span>
 
-        <span className="made-by">Built by Reuben Reyes</span>
+        <span className="made-by">Built by Reuben Reyes</span> */}
       </footer>
     )
   }

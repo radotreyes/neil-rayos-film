@@ -1,15 +1,15 @@
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
-import uuidv4 from 'uuid/v4'
+// import uuidv4 from 'uuid/v4'
 
 import ScreenWrapper from '../ScreenWrapper'
 
 export default class Projects extends Component {
-  static propTypes = {
-    fields: PropTypes.shape({
-      categories: PropTypes.array.isRequired,
-    }).isRequired,
-  }
+  // static propTypes = {
+  //   fields: PropTypes.shape({
+  //     categories: PropTypes.array.isRequired,
+  //   }).isRequired,
+  // }
 
   carousel = createRef()
 
@@ -17,53 +17,53 @@ export default class Projects extends Component {
 
   carouselImage = createRef()
 
-  componentDidMount = () => {
-    this.setMarkerPosition()
-    window.addEventListener(`resize`, this.setMarkerPosition)
-    this.carouselImage.current.style.backgroundSize = `cover`
-  }
+  // componentDidMount = () => {
+  //   this.setMarkerPosition()
+  //   window.addEventListener(`resize`, this.setMarkerPosition)
+  //   this.carouselImage.current.style.backgroundSize = `cover`
+  // }
 
-  componentwillunmount = () => {
-    window.removeEventListener(`resize`, this.setMarkerPosition)
-  }
+  // componentwillunmount = () => {
+  //   window.removeEventListener(`resize`, this.setMarkerPosition)
+  // }
 
-  setMarkerPosition = () => {
-    if (!this.carousel.current) return
-    const activeItem = document.querySelector(`li.active`)
-    const ul = this.carousel.current
-    const carouselMarker = this.carouselMarker.current
-    const { top: ulTop } = ul.getBoundingClientRect()
-    const { top, height, width } = activeItem.getBoundingClientRect()
+  // setMarkerPosition = () => {
+  //   if (!this.carousel.current) return
+  //   const activeItem = document.querySelector(`li.active`)
+  //   const ul = this.carousel.current
+  //   const carouselMarker = this.carouselMarker.current
+  //   const { top: ulTop } = ul.getBoundingClientRect()
+  //   const { top, height, width } = activeItem.getBoundingClientRect()
 
-    carouselMarker.style.height = `${height}px`
-    carouselMarker.style.width = `${width}px`
-    carouselMarker.style.top = `${top - ulTop}px`
-  }
+  //   carouselMarker.style.height = `${height}px`
+  //   carouselMarker.style.width = `${width}px`
+  //   carouselMarker.style.top = `${top - ulTop}px`
+  // }
 
-  handleCarouselClick = ({ nativeEvent: { path } }) => {
-    const {
-      fields: { categories },
-    } = this.props
+  // handleCarouselClick = ({ nativeEvent: { path } }) => {
+  //   const {
+  //     fields: { categories },
+  //   } = this.props
 
-    const ul = this.carousel.current
-    const listItems = [...ul.children]
-    listItems.forEach(({ classList }) => {
-      /* eslint-disable-next-line */
-      classList.contains(`active`) && classList.remove(`active`)
-    })
-    const activeItem = path[1]
-    activeItem.classList.add(`active`)
-    this.setMarkerPosition()
-    this.carouselImage.current.style.backgroundImage = `url(${
-      categories[activeItem.dataset.index].featured_image
-    })`
-    this.carouselImage.current.style.backgroundSize = `cover`
-  }
+  //   const ul = this.carousel.current
+  //   const listItems = [...ul.children]
+  //   listItems.forEach(({ classList }) => {
+  //     /* eslint-disable-next-line */
+  //     classList.contains(`active`) && classList.remove(`active`)
+  //   })
+  //   const activeItem = path[1]
+  //   activeItem.classList.add(`active`)
+  //   this.setMarkerPosition()
+  //   this.carouselImage.current.style.backgroundImage = `url(${
+  //     categories[activeItem.dataset.index].featured_image
+  //   })`
+  //   this.carouselImage.current.style.backgroundSize = `cover`
+  // }
 
   render() {
-    const {
-      fields: { categories },
-    } = this.props
+    // const {
+    //   fields: { categories },
+    // } = this.props
     return (
       <ScreenWrapper screen="long-story-2">
         {() => (
@@ -72,7 +72,7 @@ export default class Projects extends Component {
               <div
                 className="viewbox__screen"
                 style={{
-                  background: `url(${categories[0].featured_image})`,
+                  background: `black`,
                 }}
                 ref={this.carouselImage}
               />
@@ -83,7 +83,7 @@ export default class Projects extends Component {
                 <div className="carousel-marker" ref={this.carouselMarker}>
                   .
                 </div>
-                {categories.map(({ name, description }, i) => (
+                {/* {categories.map(({ name, description }, i) => (
                   <li
                     key={uuidv4()}
                     className={!i ? `active` : ``}
@@ -97,7 +97,7 @@ export default class Projects extends Component {
                       </a>
                     </h5>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </div>
           </div>

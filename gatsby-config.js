@@ -25,9 +25,21 @@ if (!spaceId || !accessToken) {
 module.exports = {
   pathPrefix: `/gatsby-contentful-starter`,
   plugins: [
+    `gatsby-plugin-react-next`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-react-svg`,
+      options: {
+        include: `${__dirname}/src/svgs`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        includePaths: [`${__dirname}/src/styles`],
+      },
+    },
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-contentful`,
