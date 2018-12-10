@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 
 // import Link from 'next/link'
 import ScreenWrapper from '../ScreenWrapper'
-import RightArrow from '../../svgs/right-arrow.svg'
+import RightArrow from '../../../static/svgs/right-arrow.svg'
 
 export default class LongStory extends Component {
   // static propTypes = {

@@ -32,6 +32,7 @@ export default class LongStory extends Component {
 
   render() {
     const { isWindowLandscape } = this.state
+    // console.log(this.props)
     // const {
     //   fields: { intro, projects, about },
     //   youtube,

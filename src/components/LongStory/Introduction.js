@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ScreenWrapper from '../ScreenWrapper'
-import YouTube from '../../svgs/youtube.svg'
+import YouTube from '../../../static/svgs/youtube.svg'
 // import Footer from './Footer'
 
 export default class LongStory extends Component {
