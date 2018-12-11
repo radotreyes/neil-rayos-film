@@ -37,13 +37,6 @@ export default class Nav extends Component {
     const { shouldShowNav } = this.state
     return (
       <nav className={`nav ${shouldShowNav ? `` : `hidden`}`}>
-        {/* <MenuContext.Consumer>
-          {({ headerMenu }) => (
-            <Fragment>
-              {getMenuProps({ ...headerMenu, linkClassName: `nav__link` })}
-            </Fragment>
-          )}
-        </MenuContext.Consumer> */}
         <Link to="/">Home</Link>
         <Link to="/projects">Projects</Link>
         <Link to="/about">About</Link>

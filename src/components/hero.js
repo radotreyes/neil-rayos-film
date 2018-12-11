@@ -11,7 +11,9 @@ import Twitter from '../../static/svgs/twitter.svg'
 // import Footer from './Footer'
 const Hero = (props) => {
   const {
-    data: { heroDisplayText, heroMedia },
+    heroProps: {
+      heroDisplayText, heroMedia, instagram, twitter, youtube,
+    },
   } = props
 
   const videoPattern = new RegExp(/^.+\.mp4$/)
@@ -28,7 +30,6 @@ const Hero = (props) => {
     },
   ] = heroMedia.filter(media => imagePattern.test(media.file.fileName))
 
-  console.log(image)
   return (
     <div
       className="hero__grid"
@@ -38,26 +39,21 @@ const Hero = (props) => {
         backgroundRepeat: `no-repeat`,
       }}
     >
-      {/* <video
-      autoPlay
-      className="hero__video"
-      loop
-      src="https://cl.ly/36073bf9ec2b/social-butterfly.mp4"
-    >
-      social-butterfly.mp4
-    </video> */}
+      <video autoPlay muted className="hero__video" loop src={video}>
+        social-butterfly.mp4
+      </video>
       <div className="hero__header">
         <h1 className="jumbotron marquee">{heroDisplayText}</h1>
         <div className="header__svgs">
           <span>FIND ME ON:</span>
           <div className="svgs__svgs">
-            <a href="https://youtube.com">
+            <a href={youtube}>
               <YouTube />
             </a>
-            <a href="https://youtube.com">
+            <a href={instagram}>
               <Instagram />
             </a>
-            <a href="https://youtube.com">
+            <a href={twitter}>
               <Twitter />
             </a>
           </div>
@@ -78,7 +74,7 @@ const Hero = (props) => {
 }
 
 Hero.propTypes = {
-  data: PropTypes.object.isRequired,
+  heroProps: PropTypes.object.isRequired,
 }
 
 export default Hero

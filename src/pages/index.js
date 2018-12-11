@@ -13,44 +13,44 @@ export default class RootIndex extends Component {
   }
 
   render() {
-    // console.log(this.props)
-    // const {
-    //   data: {
-    //     site: {
-    //       siteMetadata: { title: siteTitle },
-    //     },
-    //     allContentfulBlogPost: {
-    //       edges: { posts },
-    //     },
-    //     allContentfulPerson: {
-    //       edges: {
-    //         author: [author],
-    //       },
-    //     },
-    //   },
-    // } = this.props
-    // const siteTitle = get(this, `props.data.site.siteMetadata.title`)
-    // const posts = get(this, `props.data.allContentfulBlogPost.edges`)
-    // const [author] = get(this, `props.data.allContentfulPerson.edges`)
     const {
-      data: { contentfulFrontPage },
+      data: {
+        contentfulFrontPage,
+        contentfulFrontPage: {
+          person: { instagram, youtube, twitter },
+          introHeader,
+          introBody,
+          aboutLeft,
+          aboutLeftBody,
+          aboutRight,
+          aboutRightBody,
+        },
+        contentfulFeaturedProjects: { featuredProjects },
+      },
     } = this.props
+    const intro = { introHeader, introBody }
+    const about = {
+      aboutLeft,
+      aboutLeftBody,
+      aboutRight,
+      aboutRightBody,
+    }
     return (
       <Fragment>
         <Helmet title="siteTitle" />
         {/* <Hero data={author.node} /> */}
-        <Hero data={{ ...contentfulFrontPage }} />
-        <LongStory />
-        <div className="wrapper">
-          <h2 className="section-headline">Recent articles</h2>
-          <ul className="article-list">
-            {/* {posts.map(({ node }) => (
-              <li key={node.slug}>
-                <ArticlePreview article={node} />
-              </li>
-            ))} */}
-          </ul>
-        </div>
+        <Hero
+          heroProps={{
+            ...contentfulFrontPage,
+            instagram,
+            twitter,
+            youtube,
+          }}
+        />
+        <LongStory fields={{
+          intro, featuredProjects, about, youtube,
+        }}
+        />
       </Fragment>
     )
   }
@@ -88,27 +88,51 @@ export const pageQuery = graphql`
           fileName
         }
       }
+      person {
+        name
+        title
+        youtube
+        instagram
+        twitter
+      }
+      introHeader
+      introBody {
+        internal {
+          content
+        }
+      }
+      aboutLeft
+      aboutLeftBody {
+        internal {
+          content
+        }
+      }
+      aboutRight
+      aboutRightBody {
+        internal {
+          content
+        }
+      }
     }
-    # allContentfulPerson(filter: { id: { eq: "c15jwOBqpxqSAOy2eOO4S0m" } }) {
-    #   edges {
-    #     node {
-    #       name
-    #       shortBio {
-    #         shortBio
-    #       }
-    #       title
-    #       heroImage: image {
-    #         sizes(
-    #           maxWidth: 1180
-    #           maxHeight: 480
-    #           resizingBehavior: PAD
-    #           background: "rgb:000000"
-    #         ) {
-    #           ...GatsbyContentfulSizes_withWebp
-    #         }
-    #       }
-    #     }
-    #   }
-    # }
+    contentfulFeaturedProjects(
+      contentful_id: { eq: "3No3nd5yfYqieEkc8gaqSk" }
+    ) {
+      featuredProjects {
+        featuredImage {
+          sizes(maxWidth: 800, maxHeight: 480, resizingBehavior: SCALE) {
+            src
+            sizes
+          }
+        }
+        category {
+          title
+          description {
+            internal {
+              content
+            }
+          }
+        }
+      }
+    }
   }
 `

@@ -1,19 +1,18 @@
 import React, { Component, Fragment } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import Introduction from './Introduction'
 import Projects from './Projects'
 import About from './About'
 // import Footer from './Footer'
 
 export default class LongStory extends Component {
-  // static propTypes = {
-  //   fields: PropTypes.shape({
-  //     intro: PropTypes.object.isRequired,
-  //     projects: PropTypes.object.isRequired,
-  //     about: PropTypes.object.isRequired,
-  //   }).isRequired,
-  //   youtube: PropTypes.string.isRequired,
-  // }
+  static propTypes = {
+    fields: PropTypes.shape({
+      intro: PropTypes.object.isRequired,
+      featuredProjects: PropTypes.array.isRequired,
+      about: PropTypes.object.isRequired,
+    }).isRequired,
+  }
 
   state = {
     isWindowLandscape: true,
@@ -32,14 +31,31 @@ export default class LongStory extends Component {
 
   render() {
     const { isWindowLandscape } = this.state
-    // console.log(this.props)
-    // const {
-    //   fields: { intro, projects, about },
-    //   youtube,
-    // } = this.props
+    const {
+      fields: {
+        intro: {
+          introHeader,
+          introBody: {
+            internal: { content: introBody },
+          },
+        },
+        featuredProjects,
+        about: {
+          aboutLeft,
+          aboutLeftBody: {
+            internal: { content: aboutLeftBody },
+          },
+          aboutRight,
+          aboutRightBody: {
+            internal: { content: aboutRightBody },
+          },
+        },
+        youtube,
+      },
+    } = this.props
     return (
       <Fragment>
-        <Introduction fields youtube />
+        <Introduction header={introHeader} body={introBody} youtube={youtube} />
         {!isWindowLandscape && (
           <img
             src="#"
@@ -47,7 +63,7 @@ export default class LongStory extends Component {
             alt="bottom-left project still"
           />
         )}
-        <Projects fields />
+        <Projects projects={featuredProjects} />
         {!isWindowLandscape && (
           <img
             src="#"
@@ -55,7 +71,10 @@ export default class LongStory extends Component {
             alt="middle project still"
           />
         )}
-        <About fields />
+        <About
+          left={{ header: aboutLeft, body: aboutLeftBody }}
+          right={{ header: aboutRight, body: aboutRightBody }}
+        />
       </Fragment>
     )
   }

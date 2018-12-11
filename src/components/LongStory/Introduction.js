@@ -5,38 +5,24 @@ import YouTube from '../../../static/svgs/youtube.svg'
 // import Footer from './Footer'
 
 export default class LongStory extends Component {
-  // static propTypes = {
-  //   fields: PropTypes.shape({
-  //     header: PropTypes.string.isRequired,
-  //     body: PropTypes.string.isRequired,
-  //     stills: PropTypes.shape({
-  //       topright: PropTypes.object.isRequired,
-  //       middle: PropTypes.object.isRequired,
-  //       bottomleft: PropTypes.object.isRequired,
-  //     }).isRequired,
-  //   }).isRequired,
-  //   youtube: PropTypes.string.isRequired,
-  // }
+  static propTypes = {
+    header: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    youtube: PropTypes.string.isRequired,
+  }
 
   render() {
-    // const {
-    //   fields: {
-    //     header,
-    //     body,
-    //     stills: { topright, middle, bottomleft },
-    //   },
-    //   youtube,
-    // } = this.props
+    const { header, body, youtube } = this.props
     return (
       <ScreenWrapper screen="long-story-1">
         {() => (
           <div className="long-story__introduction">
             <div className="long-story__introduction--main">
-              <h2 className="introduction__header">header</h2>
-              <p className="introduction__body subtext">body</p>
+              <h2 className="introduction__header">{header}</h2>
+              <p className="introduction__body subtext">{body}</p>
               <div className="introduction__action">
                 <YouTube />
-                <a href="https://youtube.com" className="text-link">
+                <a href={youtube} className="text-link">
                   VIEW SHOWREEL
                 </a>
               </div>

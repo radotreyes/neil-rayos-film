@@ -1,69 +1,73 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
-// import uuidv4 from 'uuid/v4'
+import uuidv4 from 'uuid/v4'
 
 import ScreenWrapper from '../ScreenWrapper'
 
 export default class Projects extends Component {
-  // static propTypes = {
-  //   fields: PropTypes.shape({
-  //     categories: PropTypes.array.isRequired,
-  //   }).isRequired,
-  // }
+  static propTypes = {
+    projects: PropTypes.array.isRequired,
+  }
 
-  carousel = createRef()
+  constructor() {
+    super()
+    this.carousel = createRef()
+    this.carouselMarker = createRef()
+    this.carouselImage = createRef()
+  }
 
-  carouselMarker = createRef()
+  componentDidMount = () => {
+    this.setMarkerPosition()
+    window.addEventListener(`resize`, this.setMarkerPosition)
+    this.carouselImage.current.style.backgroundSize = `cover`
+  }
 
-  carouselImage = createRef()
+  componentwillunmount = () => {
+    window.removeEventListener(`resize`, this.setMarkerPosition)
+  }
 
-  // componentDidMount = () => {
-  //   this.setMarkerPosition()
-  //   window.addEventListener(`resize`, this.setMarkerPosition)
-  //   this.carouselImage.current.style.backgroundSize = `cover`
-  // }
+  setMarkerPosition = () => {
+    if (!this.carousel.current) return
+    const activeItem = document.querySelector(`li.active`)
+    const ul = this.carousel.current
+    const carouselMarker = this.carouselMarker.current
+    const { top: ulTop } = ul.getBoundingClientRect()
+    const { top, height, width } = activeItem.getBoundingClientRect()
 
-  // componentwillunmount = () => {
-  //   window.removeEventListener(`resize`, this.setMarkerPosition)
-  // }
+    carouselMarker.style.height = `${height}px`
+    carouselMarker.style.width = `${width}px`
+    carouselMarker.style.top = `${top - ulTop}px`
+  }
 
-  // setMarkerPosition = () => {
-  //   if (!this.carousel.current) return
-  //   const activeItem = document.querySelector(`li.active`)
-  //   const ul = this.carousel.current
-  //   const carouselMarker = this.carouselMarker.current
-  //   const { top: ulTop } = ul.getBoundingClientRect()
-  //   const { top, height, width } = activeItem.getBoundingClientRect()
+  handleCarouselClick = ({ nativeEvent: { path } }) => {
+    const { projects } = this.props
+    const featuredImages = projects.map(
+      project => project.featuredImage.sizes.src,
+    )
 
-  //   carouselMarker.style.height = `${height}px`
-  //   carouselMarker.style.width = `${width}px`
-  //   carouselMarker.style.top = `${top - ulTop}px`
-  // }
-
-  // handleCarouselClick = ({ nativeEvent: { path } }) => {
-  //   const {
-  //     fields: { categories },
-  //   } = this.props
-
-  //   const ul = this.carousel.current
-  //   const listItems = [...ul.children]
-  //   listItems.forEach(({ classList }) => {
-  //     /* eslint-disable-next-line */
-  //     classList.contains(`active`) && classList.remove(`active`)
-  //   })
-  //   const activeItem = path[1]
-  //   activeItem.classList.add(`active`)
-  //   this.setMarkerPosition()
-  //   this.carouselImage.current.style.backgroundImage = `url(${
-  //     categories[activeItem.dataset.index].featured_image
-  //   })`
-  //   this.carouselImage.current.style.backgroundSize = `cover`
-  // }
+    const ul = this.carousel.current
+    const listItems = Array.from([...ul.children][0]).filter(listItem => listItem.localName === `li`)
+    listItems.forEach((listItem) => {
+      const { classList } = listItem
+      /* eslint-disable-next-line */
+      classList.contains(`active`) && classList.remove(`active`)
+    })
+    const activeItem = path[1]
+    activeItem.classList.add(`active`)
+    this.setMarkerPosition()
+    this.carouselImage.current.style.backgroundImage = `url(${
+      featuredImages[activeItem.dataset.index]
+    })`
+    this.carouselImage.current.style.backgroundSize = `cover`
+  }
 
   render() {
-    // const {
-    //   fields: { categories },
-    // } = this.props
+    const { projects } = this.props
+    const featuredList = projects.map(project => ({
+      title: project.category.title,
+      description: project.category.description.internal.content,
+    }))
     return (
       <ScreenWrapper screen="long-story-2">
         {() => (
@@ -83,13 +87,18 @@ export default class Projects extends Component {
                 <div className="carousel-marker" ref={this.carouselMarker}>
                   .
                 </div>
-                {/* {categories.map(({ name, description }, i) => (
+                {featuredList.map(({ title, description }, i) => (
                   <li
                     key={uuidv4()}
                     className={!i ? `active` : ``}
                     data-index={i}
                   >
-                    <h3 onClick={this.handleCarouselClick}>{name}</h3>
+                    <h3
+                      onClick={this.handleCarouselClick}
+                      onKeyDown={this.handleCarouselClick}
+                    >
+                      {title}
+                    </h3>
                     <p>{description}</p>
                     <h5>
                       <a href="" className="text-link">
@@ -97,7 +106,7 @@ export default class Projects extends Component {
                       </a>
                     </h5>
                   </li>
-                ))} */}
+                ))}
               </ul>
             </div>
           </div>

@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-// import fetch from 'isomorphic-unfetch'
-// import Error from 'next/error'
 
 import Layout from '../components/Layout'
 // import Nav from '../components/Nav'
@@ -17,38 +15,55 @@ import Location from '../../static/svgs/location.svg'
 export default class About extends Component {
   static propTypes = {
     data: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      company: PropTypes.string,
-      shortBio: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      instagram: PropTypes.string.isRequired,
-      twitter: PropTypes.string.isRequired,
-      youtube: PropTypes.string.isRequired,
-      image: PropTypes.object.isRequired,
+      contentfulAboutPage: PropTypes.shape({
+        person: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          title: PropTypes.string.isRequired,
+          location: PropTypes.string.isRequired,
+          email: PropTypes.string.isRequired,
+          twitter: PropTypes.string.isRequired,
+          instagram: PropTypes.string.isRequired,
+          youtube: PropTypes.string.isRequired,
+          shortBio: PropTypes.shape({
+            internal: PropTypes.shape({
+              shortBio: PropTypes.string.isRequired,
+            }).isRequired,
+          }).isRequired,
+        }).isRequired,
+        emailButtonText: PropTypes.string.isRequired,
+        resume: PropTypes.object.isRequired,
+      }).isRequired,
     }).isRequired,
   }
 
   render() {
     const {
       data: {
-        contentfulPerson: {
-          name,
-          title,
-          email,
-          instagram,
-          twitter,
-          youtube,
-          shortBio: { shortBio },
-          profilePic: {
-            sizes: { src: profilePic },
+        contentfulAboutPage: {
+          person: {
+            name,
+            title,
+            email,
+            location,
+            // resume,
+            instagram,
+            twitter,
+            youtube,
+            shortBio: {
+              internal: { shortBio },
+            },
+            profilePic: {
+              sizes: { src: profilePic },
+            },
           },
+          emailButtonText,
+          resume,
         },
       },
     } = this.props
     return (
       <Fragment>
-        <ScreenWrapper spanInline screen="about">
+        <ScreenWrapper screen="about">
           {() => (
             <div className="about__wrapper">
               <div className="about__body">
@@ -81,12 +96,12 @@ export default class About extends Component {
                     <div className="me__title">{title}</div>
                     <div className="me__location">
                       <Location />
-                      location
+                      {location}
                     </div>
                     <Button
                       type="button"
                       theme="secondary"
-                      value="button_text"
+                      value={emailButtonText}
                     />
                   </section>
                 </div>
@@ -99,7 +114,7 @@ export default class About extends Component {
                 <h1 className="about__header lead">resume</h1>
                 <div
                   className="cv__cv"
-                  dangerouslySetInnerHTML={{ __html: `resume` }}
+                  dangerouslySetInnerHTML={{ __html: ` resume ` }}
                 />
               </div>
             </div>
@@ -113,24 +128,38 @@ export default class About extends Component {
 /* eslint-disable no-undef */
 export const aboutQuery = graphql`
   query AboutQuery {
-    contentfulPerson(id: { eq: "c15jwOBqpxqSAOy2eOO4S0m" }) {
-      name
-      title
-      email
-      instagram
-      twitter
-      youtube
-      shortBio {
-        shortBio
+    contentfulAboutPage(contentful_id: { eq: "6LieSV3UacEkag0u8meGyW" }) {
+      person {
+        name
+        title
+        location
+        email
+        twitter
+        instagram
+        youtube
+        shortBio {
+          internal {
+            shortBio: content
+          }
+        }
+        profilePic: image {
+          sizes(
+            maxWidth: 1180
+            maxHeight: 480
+            resizingBehavior: PAD
+            background: "rgb:000000"
+          ) {
+            ...GatsbyContentfulSizes_withWebp
+          }
+        }
       }
-      profilePic: image {
-        sizes(
-          maxWidth: 1180
-          maxHeight: 480
-          resizingBehavior: PAD
-          background: "rgb:000000"
-        ) {
-          ...GatsbyContentfulSizes_withWebp
+      emailButtonText
+      resume {
+        content {
+          nodeType
+          content {
+            value
+          }
         }
       }
     }
