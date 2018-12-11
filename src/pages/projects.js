@@ -25,11 +25,15 @@ export default class Projects extends Component {
     const projects = edges.map(
       ({
         node: {
+          slug,
           featuredImage: {
             sizes: { src: image },
           },
         },
-      }) => image,
+      }) => ({
+        slug,
+        image,
+      }),
     )
     // const projectImages = projects.map(project => ({
     //   image:
@@ -38,8 +42,12 @@ export default class Projects extends Component {
     //   slug: project.slug,
     //   link: project.link,
     // }))
-    const mapProjectImages = () => projects.map(image => (
-      <Link key={uuidv4()} to="/projects" className="masonry__project-anchor">
+    const mapProjectImages = () => projects.map(({ slug, image }) => (
+      <Link
+        key={uuidv4()}
+        to={`/projects/${slug}`}
+        className="masonry__project-anchor"
+      >
         <img className="masonry__project-image" src={image} alt="test" />
       </Link>
     ))
@@ -74,6 +82,7 @@ export const projectsQuery = graphql`
     allContentfulProject(sort: { fields: [releaseDate], order: DESC }) {
       edges {
         node {
+          slug
           featuredImage {
             sizes(maxWidth: 800, maxHeight: 450) {
               src
