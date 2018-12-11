@@ -18,9 +18,13 @@ export default class Projects extends Component {
   }
 
   componentDidMount = () => {
+    const { projects } = this.props
+    const initialFeaturedImage = projects[0].featuredImage.sizes.src
     this.setMarkerPosition()
     window.addEventListener(`resize`, this.setMarkerPosition)
     this.carouselImage.current.style.backgroundSize = `cover`
+    this.carouselImage.current.style.background = `url('${initialFeaturedImage}')`
+    this.carouselImage.current.style.backgroundRepeat = `no-repeat`
   }
 
   componentwillunmount = () => {
@@ -47,7 +51,9 @@ export default class Projects extends Component {
     )
 
     const ul = this.carousel.current
-    const listItems = Array.from([...ul.children][0]).filter(listItem => listItem.localName === `li`)
+    const listItems = Array.from([...ul.children][0]).filter(
+      listItem => listItem.localName === `li`,
+    )
     listItems.forEach((listItem) => {
       const { classList } = listItem
       /* eslint-disable-next-line */
@@ -73,13 +79,7 @@ export default class Projects extends Component {
         {() => (
           <div className="long-story__projects">
             <div className="long-story__projects--viewbox">
-              <div
-                className="viewbox__screen"
-                style={{
-                  background: `black`,
-                }}
-                ref={this.carouselImage}
-              />
+              <div className="viewbox__screen" ref={this.carouselImage} />
             </div>
             <div className="long-story__projects--menu">
               <h2 className="lead">PROJECTS</h2>
