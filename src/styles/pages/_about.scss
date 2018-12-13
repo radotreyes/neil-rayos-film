@@ -141,55 +141,7 @@ $video-height: calc(#{$video-width} * 9 / 16);
           margin-left: 0.5rem;
         }
 
-        h1 {
-          $header-size: 1.25rem;
-          font-weight: 300;
-          font-size: $header-size;
-          margin: 2rem auto;
-
-          position: relative;
-          text-transform: uppercase;
-
-          &:after {
-            position: absolute;
-            content: '';
-            width: $header-size;
-            left: 0.15vw;
-            transform: translateY($header-size);
-            margin-top: 1rem;
-            border-top: 1px solid $theme-red;
-          }
-
-          &:first-of-type {
-            margin-top: 1.5rem;
-          }
-        }
-
-        @for $i from 1 through 5 {
-          $header-sizes: nth(1.125rem 1rem 0.9rem 0.75rem 0.625rem, $i);
-
-          h#{$i + 1} {
-            font-weight: 300;
-            font-size: $header-sizes;
-            margin: 1.5rem auto -0.25rem;
-          }
-        }
-
-        p {
-          margin-left: 0.75rem;
-          font-size: 0.9rem;
-        }
-
-        sub {
-          font-size: 0.75rem;
-        }
-
-        ul,
-        ol {
-          li {
-            font-size: 0.9rem;
-          }
-        }
+        @include markdown-formatting;
       }
     }
   }

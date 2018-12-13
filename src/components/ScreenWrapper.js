@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 
 const ScreenWrapper = ({ screen, children, main }) => (
   <Fragment>
-    {/* <Header /> */}
     <section
       id={screen}
       className={`screen__fullscreen${main ? `--main` : ``}`}

@@ -66,9 +66,17 @@ export default class Project extends Component {
   render() {
     const {
       data: {
-        contentfulProject: descriptions,
         contentfulProject: {
-          title, synopsis, production, directorsThoughts,
+          title,
+          synopsis: {
+            internal: { synopsis },
+          },
+          production: {
+            internal: { production },
+          },
+          directorsThoughts: {
+            internal: { directorsThoughts },
+          },
         },
       },
       pathContext: { slug },
@@ -76,92 +84,78 @@ export default class Project extends Component {
     const { activeSlide } = this.state
     // const videoId = video_url.split(`=`)[1]
     const videoId = `0`
+    const descriptions = {
+      synopsis,
+      production,
+      directorsThoughts,
+    }
+
     const description = descriptions[activeSlide]
+    console.log(descriptions)
 
     return (
       <WindowContext.Consumer>
         {({ isWindowLandscape }) => (
-          <Fragment>
-            <ScreenWrapper screen="single-project">
-              {() => (
-                <Fragment>
-                  <h1
-                    className={`lead${
-                      isWindowLandscape ? `--center` : ``
-                    } project__header`}
-                  >
-                    {title}
-                  </h1>
-                  <div className="project__iframe-wrapper">
-                    <iframe
-                      className="project__video-embed"
-                      title={title}
-                      width="960px"
-                      height="auto"
-                      src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                      frameBorder="0"
-                      allowFullScreen
-                    />
-                  </div>
-                  {isWindowLandscape && (
-                    <div className="project__video-padding" />
-                  )}
-                  <div className="project__body">
-                    {isWindowLandscape && (
-                      <ul
-                        className="project__nav"
-                        ref={this.projectNav}
-                        onClick={this.handleMenuClick}
-                      >
-                        <div
-                          className="project__nav--marker"
-                          ref={this.navMarker}
-                        />
-                        <li className="active" data-slide="synopsis">
-                          Synopsis
-                        </li>
-                        <li data-slide="production">Production</li>
-                        <li data-slide="directorsThoughts">
-                          {`Director's`}
-                          {` `}
-                          Thoughts
-                        </li>
-                      </ul>
-                    )}
-                    <div>
-                      {isWindowLandscape ? (
-                        <div className="project__description">
-                          <Markdown source={description} />
-                        </div>
-                      ) : (
-                        <Fragment>
-                          <div>
-                            <Markdown source={synopsis} />
-                          </div>
-                          <div
-                            className="project__description"
-                            dangerouslySetInnerHTML={{
-                              __html: `director's thoughts`,
-                            }}
-                          >
-                            <Markdown source={production} />
-                          </div>
-                          <div
-                            className="project__description"
-                            dangerouslySetInnerHTML={{
-                              __html: `director's thoughts`,
-                            }}
-                          >
-                            <Markdown source={directorsThoughts} />
-                          </div>
-                        </Fragment>
-                      )}
-                    </div>
-                  </div>
-                </Fragment>
+          <div className="single-project">
+            <h1
+              className={`lead${
+                isWindowLandscape ? `--center` : ``
+              } project__header`}
+            >
+              {title}
+            </h1>
+            <div className="project__iframe-wrapper">
+              <iframe
+                className="project__video-embed"
+                title={title}
+                width="960px"
+                height="auto"
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                frameBorder="0"
+                allowFullScreen
+              />
+            </div>
+            {isWindowLandscape && <div className="project__video-padding" />}
+            <div className="project__body">
+              {isWindowLandscape && (
+                <ul
+                  className="project__nav"
+                  ref={this.projectNav}
+                  onClick={this.handleMenuClick}
+                >
+                  <div className="project__nav--marker" ref={this.navMarker} />
+                  <li className="active" data-slide="synopsis">
+                    Synopsis
+                  </li>
+                  <li data-slide="production">Production</li>
+                  <li data-slide="directorsThoughts">
+                    {`Director's`}
+                    {` `}
+                    Thoughts
+                  </li>
+                </ul>
               )}
-            </ScreenWrapper>
-          </Fragment>
+              <div>
+                {isWindowLandscape ? (
+                  <div className="project__description">
+                    <Markdown source={description} />
+                  </div>
+                ) : (
+                  <Fragment>
+                    <div>
+                      <Markdown source={synopsis} />
+                    </div>
+                    <div>
+                      <Markdown source={production} />
+                    </div>
+                    <div>
+                      <Markdown source={directorsThoughts} />
+                    </div>
+                  </Fragment>
+                )}
+              </div>
+            </div>
+          </div>
         )}
       </WindowContext.Consumer>
     )

@@ -4,11 +4,12 @@
 $video-width: 60vw;
 $video-height: calc(#{$video-width} * 9 / 16);
 
-#single-project {
+.single-project {
   margin-top: 1.5rem;
   @media screen and (orientation: portrait) {
     margin-top: 3rem;
   }
+  width: 100%;
 }
 
 .project {
@@ -18,12 +19,12 @@ $video-height: calc(#{$video-width} * 9 / 16);
     place-content: center;
     width: 100vw;
     left: 0;
-    top: calc(2rem + 2rem + 0.83em + 0.83em + 0.1rem);
+    top: calc(2rem + 2rem + 0.83em + 0.83em + 0.1rem + 1.5rem);
     background-color: black;
     @media screen and (orientation: portrait) {
       position: relative;
       top: 0;
-      width: 100vw;
+      width: 100%;
       height: calc(56.25vw * 0.8);
       margin-bottom: 1.5rem;
     }
@@ -48,12 +49,19 @@ $video-height: calc(#{$video-width} * 9 / 16);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas:
       'nav'
       'description';
     @media screen and (orientation: portrait) {
-      padding: 0 1rem;
+      @include markdown-formatting;
+    }
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 2rem 0 1.5rem;
     }
   }
 

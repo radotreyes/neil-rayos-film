@@ -13,7 +13,6 @@ export default class LongStory extends Component {
   }
 
   render() {
-    console.log(this.props)
     const {
       header, body, youtube, stills,
     } = this.props

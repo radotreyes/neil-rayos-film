@@ -61,62 +61,58 @@ export default class About extends Component {
     } = this.props
     return (
       <Fragment>
-        <ScreenWrapper screen="about">
-          {() => (
-            <div className="about__wrapper">
-              <div className="about__body">
-                <h1 className="about__header lead">about me</h1>
-                <div className="about__profile">
-                  <section
-                    className="profile__profile-picture"
-                    style={{
-                      background: `url(${profilePic})`,
-                      backgroundSize: `cover`,
-                    }}
-                  >
-                    1
-                  </section>
-                  <section className="profile__me">
-                    <div className="me__wrapper">
-                      <div className="me__me">{name}</div>
-                      <div className="me__social-media">
-                        <a href={youtube}>
-                          <YouTube />
-                        </a>
-                        <a href={instagram}>
-                          <Instagram />
-                        </a>
-                        <a href={twitter}>
-                          <Twitter />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="me__title">{title}</div>
-                    <div className="me__location">
-                      <Location />
-                      {location}
-                    </div>
-                    <Button
-                      type="button"
-                      theme="secondary"
-                      value={emailButtonText}
-                    />
-                  </section>
+        <div id="about" className="about__wrapper">
+          <div className="about__body">
+            <h1 className="about__header lead">about me</h1>
+            <div className="about__profile">
+              <section
+                className="profile__profile-picture"
+                style={{
+                  background: `url(${profilePic})`,
+                  backgroundSize: `cover`,
+                }}
+              >
+                1
+              </section>
+              <section className="profile__me">
+                <div className="me__wrapper">
+                  <div className="me__me">{name}</div>
+                  <div className="me__social-media">
+                    <a href={youtube}>
+                      <YouTube />
+                    </a>
+                    <a href={instagram}>
+                      <Instagram />
+                    </a>
+                    <a href={twitter}>
+                      <Twitter />
+                    </a>
+                  </div>
                 </div>
-                <div
-                  className="about__desc"
-                  dangerouslySetInnerHTML={{ __html: shortBio }}
+                <div className="me__title">{title}</div>
+                <div className="me__location">
+                  <Location />
+                  {location}
+                </div>
+                <Button
+                  type="button"
+                  theme="secondary"
+                  value={emailButtonText}
                 />
-              </div>
-              <div className="about__cv">
-                <h1 className="about__header lead">resume</h1>
-                <div className="cv__cv">
-                  <Markdown source={resume} />
-                </div>
-              </div>
+              </section>
             </div>
-          )}
-        </ScreenWrapper>
+            <div
+              className="about__desc"
+              dangerouslySetInnerHTML={{ __html: shortBio }}
+            />
+          </div>
+          <div className="about__cv">
+            <h1 className="about__header lead">resume</h1>
+            <div className="cv__cv">
+              <Markdown source={resume} />
+            </div>
+          </div>
+        </div>
       </Fragment>
     )
   }
