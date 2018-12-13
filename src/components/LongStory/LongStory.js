@@ -55,6 +55,14 @@ export default class LongStory extends Component {
         youtube,
       },
     } = this.props
+    const [
+      {
+        sizes: { src: topRight },
+      },
+      {
+        sizes: { src: middle },
+      },
+    ] = featuredStills
     return (
       <Fragment>
         <Introduction
@@ -65,7 +73,7 @@ export default class LongStory extends Component {
         />
         {!isWindowLandscape && (
           <img
-            src="#"
+            src={topRight}
             style={{ width: `100%`, height: `56.25%` }}
             alt="bottom-left project still"
           />
@@ -73,7 +81,7 @@ export default class LongStory extends Component {
         <Projects projects={featuredProjects} />
         {!isWindowLandscape && (
           <img
-            src="#"
+            src={middle}
             style={{ width: `100%`, height: `56.25%` }}
             alt="middle project still"
           />

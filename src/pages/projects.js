@@ -1,16 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { throttle } from 'lodash'
 import Link from 'gatsby-link'
 import Masonry from 'react-masonry-component'
 import uuidv4 from 'uuid/v4'
 
 import WindowContext from '../context/windowContext'
-
-const normalizeString = string => string
-  .trim()
-  .replace(/\s/g, ``)
-  .toLowerCase()
+import normalizeString from '../helpers/normalizeString'
 
 export default class Projects extends Component {
   static propTypes = {
@@ -19,10 +14,13 @@ export default class Projects extends Component {
         edges: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
       }).isRequired,
     }).isRequired,
+    location: PropTypes.object.isRequired,
   }
 
-  state = {
-    searchInput: ``,
+  constructor(props) {
+    super(props)
+    const { location } = this.props
+    this.state = location.state || { searchInput: `` }
   }
 
   handleChange = (e) => {
@@ -57,24 +55,21 @@ export default class Projects extends Component {
 
     const { searchInput } = this.state
     const normalSearch = normalizeString(searchInput)
-    const mapProjectImages = throttle(
-      () => projects
-        .filter(
-          ({ category, slug, title }) => normalizeString(slug).includes(normalSearch)
-              || normalizeString(category).includes(normalSearch)
-              || normalizeString(title).includes(normalSearch),
-        )
-        .map(({ slug, image }) => (
-          <Link
-            key={uuidv4()}
-            to={`/projects/${slug}`}
-            className="masonry__project-anchor"
-          >
-            <img className="masonry__project-image" src={image} alt="test" />
-          </Link>
-        )),
-      150,
-    )
+    const mapProjectImages = () => projects
+      .filter(
+        ({ category, slug, title }) => normalizeString(slug).includes(normalSearch)
+            || normalizeString(category).includes(normalSearch)
+            || normalizeString(title).includes(normalSearch),
+      )
+      .map(({ slug, image }) => (
+        <Link
+          key={uuidv4()}
+          to={`/projects/${slug}`}
+          className="masonry__project-anchor"
+        >
+          <img className="masonry__project-image" src={image} alt="test" />
+        </Link>
+      ))
 
     return (
       <WindowContext.Consumer>

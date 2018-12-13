@@ -1,11 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import Markdown from 'react-markdown'
 
-import Layout from '../components/Layout'
-// import Nav from '../components/Nav'
 import ScreenWrapper from '../components/ScreenWrapper'
-// import PageWrapper from '../components/PageWrapper'
-// import config from '../config'
 import Button from '../components/Button'
 import Instagram from '../../static/svgs/instagram.svg'
 import YouTube from '../../static/svgs/youtube.svg'
@@ -45,7 +42,6 @@ export default class About extends Component {
             title,
             email,
             location,
-            // resume,
             instagram,
             twitter,
             youtube,
@@ -55,9 +51,11 @@ export default class About extends Component {
             profilePic: {
               sizes: { src: profilePic },
             },
+            resume: {
+              internal: { resume },
+            },
           },
           emailButtonText,
-          resume,
         },
       },
     } = this.props
@@ -112,10 +110,9 @@ export default class About extends Component {
               </div>
               <div className="about__cv">
                 <h1 className="about__header lead">resume</h1>
-                <div
-                  className="cv__cv"
-                  dangerouslySetInnerHTML={{ __html: ` resume ` }}
-                />
+                <div className="cv__cv">
+                  <Markdown source={resume} />
+                </div>
               </div>
             </div>
           )}
@@ -142,6 +139,11 @@ export const aboutQuery = graphql`
             shortBio: content
           }
         }
+        resume {
+          internal {
+            resume: content
+          }
+        }
         profilePic: image {
           sizes(
             maxWidth: 1180
@@ -154,14 +156,6 @@ export const aboutQuery = graphql`
         }
       }
       emailButtonText
-      resume {
-        content {
-          nodeType
-          content {
-            value
-          }
-        }
-      }
     }
   }
 `

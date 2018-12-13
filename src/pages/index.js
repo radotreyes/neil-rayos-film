@@ -129,6 +129,7 @@ export const pageQuery = graphql`
       contentful_id: { eq: "3No3nd5yfYqieEkc8gaqSk" }
     ) {
       featuredProjects {
+        slug
         featuredImage {
           sizes(maxWidth: 800, maxHeight: 480, resizingBehavior: SCALE) {
             src

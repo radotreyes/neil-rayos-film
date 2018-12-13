@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Nav from '../components/Nav'
 import Container from '../components/container'
 
+import Footer from '../components/Footer'
 import WindowContext from '../context/windowContext'
 import '../styles/style.scss'
 
@@ -10,6 +11,7 @@ class Template extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
     children: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
   }
 
   state = {
@@ -32,7 +34,13 @@ class Template extends Component {
   }
 
   render() {
-    const { location, children } = this.props
+    const {
+      location,
+      children,
+      data: {
+        contentfulFooter: { links },
+      },
+    } = this.props
     let header
 
     let rootPath = `/`
@@ -46,6 +54,7 @@ class Template extends Component {
         <Container>
           <Nav />
           <main className="main-content">{children()}</main>
+          <Footer links={links} />
         </Container>
       </WindowContext.Provider>
     )
@@ -53,3 +62,15 @@ class Template extends Component {
 }
 
 export default Template
+
+/* eslint-disable-no-undef */
+export const layoutQuery = graphql`
+  query LayoutQuery {
+    contentfulFooter(contentful_id: { eq: "3HGNMi2toIWw8YkoKcwqMG" }) {
+      links {
+        title
+        url
+      }
+    }
+  }
+`

@@ -124,6 +124,7 @@ $video-height: calc(#{$video-width} * 9 / 16);
     display: block;
     flex-basis: 100%;
     padding: 0 20%;
+    margin-bottom: 2.5rem;
 
     @media screen and (orientation: portrait) {
       padding: 0;
@@ -183,7 +184,8 @@ $video-height: calc(#{$video-width} * 9 / 16);
           font-size: 0.75rem;
         }
 
-        ul {
+        ul,
+        ol {
           li {
             font-size: 0.9rem;
           }

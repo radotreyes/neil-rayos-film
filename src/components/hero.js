@@ -36,6 +36,7 @@ const Hero = (props) => {
       style={{
         backgroundImage: `url('${image}')`,
         backgroundAttachment: `fill`,
+        backgroundSize: `cover`,
         backgroundRepeat: `no-repeat`,
       }}
     >

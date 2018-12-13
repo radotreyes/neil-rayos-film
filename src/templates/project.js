@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component, Fragment, createRef } from 'react'
 import PropTypes from 'prop-types'
 
+import Markdown from 'react-markdown'
 import ScreenWrapper from '../components/ScreenWrapper'
 import WindowContext from '../context/windowContext'
 
@@ -63,6 +66,7 @@ export default class Project extends Component {
   render() {
     const {
       data: {
+        contentfulProject: descriptions,
         contentfulProject: {
           title, synopsis, production, directorsThoughts,
         },
@@ -72,8 +76,7 @@ export default class Project extends Component {
     const { activeSlide } = this.state
     // const videoId = video_url.split(`=`)[1]
     const videoId = `0`
-    // const description = { __html: acf[activeSlide] }
-    const description = `placeholder`
+    const description = descriptions[activeSlide]
 
     return (
       <WindowContext.Consumer>
@@ -82,7 +85,6 @@ export default class Project extends Component {
             <ScreenWrapper screen="single-project">
               {() => (
                 <Fragment>
-                  {console.log(`project`, isWindowLandscape) && true}
                   <h1
                     className={`lead${
                       isWindowLandscape ? `--center` : ``
@@ -119,7 +121,7 @@ export default class Project extends Component {
                           Synopsis
                         </li>
                         <li data-slide="production">Production</li>
-                        <li data-slide="directors_thoughts">
+                        <li data-slide="directorsThoughts">
                           {`Director's`}
                           {` `}
                           Thoughts
@@ -128,26 +130,30 @@ export default class Project extends Component {
                     )}
                     <div>
                       {isWindowLandscape ? (
-                        <div
-                          className="project__description"
-                          dangerouslySetInnerHTML={{ __html: `description` }}
-                        />
+                        <div className="project__description">
+                          <Markdown source={description} />
+                        </div>
                       ) : (
                         <Fragment>
-                          <div
-                            className="project__description"
-                            dangerouslySetInnerHTML={{ __html: `description` }}
-                          />
-                          <div
-                            className="project__description"
-                            dangerouslySetInnerHTML={{ __html: `production` }}
-                          />
+                          <div>
+                            <Markdown source={synopsis} />
+                          </div>
                           <div
                             className="project__description"
                             dangerouslySetInnerHTML={{
                               __html: `director's thoughts`,
                             }}
-                          />
+                          >
+                            <Markdown source={production} />
+                          </div>
+                          <div
+                            className="project__description"
+                            dangerouslySetInnerHTML={{
+                              __html: `director's thoughts`,
+                            }}
+                          >
+                            <Markdown source={directorsThoughts} />
+                          </div>
                         </Fragment>
                       )}
                     </div>
@@ -169,30 +175,18 @@ export const pageQuery = graphql`
       title
       releaseDate(formatString: "MMMM Do, YYYY")
       synopsis {
-        content {
-          nodeType
-          content {
-            nodeType
-            value
-          }
+        internal {
+          synopsis: content
         }
       }
       production {
-        content {
-          nodeType
-          content {
-            nodeType
-            value
-          }
+        internal {
+          production: content
         }
       }
       directorsThoughts {
-        content {
-          nodeType
-          content {
-            nodeType
-            value
-          }
+        internal {
+          directorsThoughts: content
         }
       }
       category {

@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 import uuidv4 from 'uuid/v4'
 
 import ScreenWrapper from '../ScreenWrapper'
+import normalizeString from '../../helpers/normalizeString'
 
 export default class Projects extends Component {
   static propTypes = {
@@ -70,9 +72,10 @@ export default class Projects extends Component {
 
   render() {
     const { projects } = this.props
-    const featuredList = projects.map(project => ({
-      title: project.category.title,
-      description: project.category.description.internal.content,
+    const featuredList = projects.map(({ category, slug }) => ({
+      title: category.title,
+      slug,
+      description: category.description.internal.content,
     }))
     return (
       <ScreenWrapper screen="long-story-2">
@@ -87,7 +90,7 @@ export default class Projects extends Component {
                 <div className="carousel-marker" ref={this.carouselMarker}>
                   .
                 </div>
-                {featuredList.map(({ title, description }, i) => (
+                {featuredList.map(({ description, slug, title }, i) => (
                   <li
                     key={uuidv4()}
                     className={!i ? `active` : ``}
@@ -101,9 +104,18 @@ export default class Projects extends Component {
                     </h3>
                     <p>{description}</p>
                     <h5>
-                      <a href="" className="text-link">
+                      <Link
+                        className="text-link"
+                        to={{
+                          pathname: `/projects`,
+                          search: `?category=${title.toLowerCase()}`,
+                          state: {
+                            searchInput: title.toLowerCase(),
+                          },
+                        }}
+                      >
                         SEE MORE
-                      </a>
+                      </Link>
                     </h5>
                   </li>
                 ))}
