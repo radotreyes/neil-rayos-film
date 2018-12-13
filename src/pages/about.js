@@ -43,7 +43,6 @@ export default class About extends Component {
           person: {
             name,
             title,
-            email,
             location,
             instagram,
             twitter,

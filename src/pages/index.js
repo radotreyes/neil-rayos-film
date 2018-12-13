@@ -38,7 +38,7 @@ export default class RootIndex extends Component {
     }
     return (
       <Fragment>
-        <Helmet title="siteTitle" />
+        <Helmet title="NEIL RAYOS" />
         <Hero
           heroProps={{
             ...contentfulFrontPage,
