@@ -102,6 +102,7 @@ export default class Project extends Component {
       default:
         break
     }
+
     return (
       <WindowContext.Consumer>
         {({ isWindowLandscape }) => (
