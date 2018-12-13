@@ -66,6 +66,7 @@ export default class Project extends Component {
       data: {
         contentfulProject: {
           title,
+          featuredVideo: { url: videoUrl, type: videoType },
           synopsis: {
             internal: { synopsis },
           },
@@ -79,8 +80,6 @@ export default class Project extends Component {
       },
     } = this.props
     const { activeSlide } = this.state
-    // const videoId = video_url.split(`=`)[1]
-    const videoId = `0`
     const descriptions = {
       synopsis,
       production,
@@ -89,6 +88,20 @@ export default class Project extends Component {
 
     const description = descriptions[activeSlide]
 
+    let videoEmbed = videoUrl
+    let videoId
+    switch (videoType) {
+      case `YouTube`:
+        [, videoId] = videoUrl.split(`=`)
+        videoEmbed = `https://www.youtube.com/embed/${videoId}?autoplay=0`
+        break
+      case `Vimeo`:
+        [, videoId] = videoUrl.split(`vimeo.com/`)
+        videoEmbed = `https://player.vimeo.com/video/${videoId}`
+        break
+      default:
+        break
+    }
     return (
       <WindowContext.Consumer>
         {({ isWindowLandscape }) => (
@@ -106,7 +119,7 @@ export default class Project extends Component {
                 title={title}
                 width="960px"
                 height="auto"
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                src={videoEmbed}
                 frameBorder="0"
                 allowFullScreen
               />
@@ -164,6 +177,10 @@ export const pageQuery = graphql`
     contentfulProject(slug: { eq: $slug }) {
       title
       releaseDate(formatString: "MMMM Do, YYYY")
+      featuredVideo {
+        url
+        type
+      }
       synopsis {
         internal {
           synopsis: content
