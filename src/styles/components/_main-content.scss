@@ -11,4 +11,7 @@
   h1 {
     flex-basis: 100%;
   }
+  @media screen and (orientation: portrait) {
+    padding: 0 1rem;
+  }
 }

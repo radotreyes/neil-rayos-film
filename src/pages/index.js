@@ -20,6 +20,7 @@ export default class RootIndex extends Component {
           person: { instagram, youtube, twitter },
           introHeader,
           introBody,
+          featuredStills,
           aboutLeft,
           aboutLeftBody,
           aboutRight,
@@ -47,9 +48,14 @@ export default class RootIndex extends Component {
             youtube,
           }}
         />
-        <LongStory fields={{
-          intro, featuredProjects, about, youtube,
-        }}
+        <LongStory
+          fields={{
+            intro,
+            featuredStills,
+            featuredProjects,
+            about,
+            youtube,
+          }}
         />
       </Fragment>
     )
@@ -99,6 +105,11 @@ export const pageQuery = graphql`
       introBody {
         internal {
           content
+        }
+      }
+      featuredStills {
+        sizes(maxHeight: 450) {
+          src
         }
       }
       aboutLeft

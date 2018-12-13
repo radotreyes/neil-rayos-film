@@ -1,14 +1,8 @@
-/* eslint-disable react/no-danger */
-
 import React, { Component, Fragment, createRef } from 'react'
 import PropTypes from 'prop-types'
-// import fetch from 'isomorphic-unfetch'
-// import Error from 'next/error'
-// import MenuContext from '../context/menuContext'
-import Layout from '../components/Layout'
+
 import ScreenWrapper from '../components/ScreenWrapper'
-// import PageWrapper from '../components/PageWrapper'
-// import config from '../config'
+import WindowContext from '../context/windowContext'
 
 export default class Project extends Component {
   static propTypes = {
@@ -51,7 +45,9 @@ export default class Project extends Component {
     const ul = this.projectNav.current
     if (e.target === ul) return
     const { slide: activeSlide } = e.target.dataset
-    const listItems = [...ul.children]
+    const listItems = Array.from([...ul.children][0]).filter(
+      listItem => listItem.localName === `li`,
+    )
     listItems.forEach(({ classList }) => {
       /* eslint-disable-next-line */
       classList.contains(`active`) && classList.remove(`active`)
@@ -80,72 +76,88 @@ export default class Project extends Component {
     const description = `placeholder`
 
     return (
-      <Fragment>
-        <ScreenWrapper screen={`${slug}`}>
-          {() => (
-            <Fragment>
-              <h1
-                // className={`lead${
-                //   isWindowLandscape ? `--center` : ``
-                // } project__header`}
-                className="lead--center project__header"
-              >
-                {title}
-              </h1>
-              <div className="project__iframe-wrapper">
-                <iframe
-                  className="project__video-embed"
-                  title={title}
-                  width="960px"
-                  height="auto"
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                  frameBorder="0"
-                  allowFullScreen
-                />
-              </div>
-              <div className="project__video-padding" />
-              <div className="project__body">
-                <ul
-                  className="project__nav"
-                  ref={this.projectNav}
-                  onClick={this.handleMenuClick}
-                >
-                  <div className="project__nav--marker" ref={this.navMarker} />
-                  <li className="active" data-slide="synopsis">
-                    Synopsis
-                  </li>
-                  <li data-slide="production">Production</li>
-                  <li data-slide="directors_thoughts">
-                    {`Director's`}
-                    {` `}
-                    Thoughts
-                  </li>
-                </ul>
-                {/* <div
-                  className="project__description"
-                  dangerouslySetInnerHTML={description}
-                /> */}
-                <div>
-                  <div
-                    className="project__description"
-                    dangerouslySetInnerHTML={{ __html: `description` }}
-                  />
-                  <div
-                    className="project__description"
-                    dangerouslySetInnerHTML={{ __html: `production` }}
-                  />
-                  <div
-                    className="project__description"
-                    dangerouslySetInnerHTML={{
-                      __html: `director's thoughts`,
-                    }}
-                  />
-                </div>
-              </div>
-            </Fragment>
-          )}
-        </ScreenWrapper>
-      </Fragment>
+      <WindowContext.Consumer>
+        {({ isWindowLandscape }) => (
+          <Fragment>
+            <ScreenWrapper screen="single-project">
+              {() => (
+                <Fragment>
+                  {console.log(`project`, isWindowLandscape) && true}
+                  <h1
+                    className={`lead${
+                      isWindowLandscape ? `--center` : ``
+                    } project__header`}
+                  >
+                    {title}
+                  </h1>
+                  <div className="project__iframe-wrapper">
+                    <iframe
+                      className="project__video-embed"
+                      title={title}
+                      width="960px"
+                      height="auto"
+                      src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                      frameBorder="0"
+                      allowFullScreen
+                    />
+                  </div>
+                  {isWindowLandscape && (
+                    <div className="project__video-padding" />
+                  )}
+                  <div className="project__body">
+                    {isWindowLandscape && (
+                      <ul
+                        className="project__nav"
+                        ref={this.projectNav}
+                        onClick={this.handleMenuClick}
+                      >
+                        <div
+                          className="project__nav--marker"
+                          ref={this.navMarker}
+                        />
+                        <li className="active" data-slide="synopsis">
+                          Synopsis
+                        </li>
+                        <li data-slide="production">Production</li>
+                        <li data-slide="directors_thoughts">
+                          {`Director's`}
+                          {` `}
+                          Thoughts
+                        </li>
+                      </ul>
+                    )}
+                    <div>
+                      {isWindowLandscape ? (
+                        <div
+                          className="project__description"
+                          dangerouslySetInnerHTML={{ __html: `description` }}
+                        />
+                      ) : (
+                        <Fragment>
+                          <div
+                            className="project__description"
+                            dangerouslySetInnerHTML={{ __html: `description` }}
+                          />
+                          <div
+                            className="project__description"
+                            dangerouslySetInnerHTML={{ __html: `production` }}
+                          />
+                          <div
+                            className="project__description"
+                            dangerouslySetInnerHTML={{
+                              __html: `director's thoughts`,
+                            }}
+                          />
+                        </Fragment>
+                      )}
+                    </div>
+                  </div>
+                </Fragment>
+              )}
+            </ScreenWrapper>
+          </Fragment>
+        )}
+      </WindowContext.Consumer>
     )
   }
 }

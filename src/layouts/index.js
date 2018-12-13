@@ -1,16 +1,34 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 import Nav from '../components/Nav'
 import Container from '../components/container'
-import Navigation from '../components/navigation'
 
+import WindowContext from '../context/windowContext'
 import '../styles/style.scss'
 
 class Template extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
     children: PropTypes.func.isRequired,
+  }
+
+  state = {
+    isWindowLandscape: true,
+  }
+
+  componentDidMount = () => {
+    window.addEventListener(`resize`, this.handleResize)
+    this.handleResize()
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener(`resize`, this.handleResize)
+  }
+
+  handleResize = () => {
+    this.setState({
+      isWindowLandscape: window.matchMedia(`(orientation: landscape)`).matches,
+    })
   }
 
   render() {
@@ -22,12 +40,14 @@ class Template extends Component {
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       rootPath = `${__PATH_PREFIX__}/`
     }
-
+    const { isWindowLandscape } = this.state
     return (
-      <Container>
-        <Nav />
-        <main className="main-content">{children()}</main>
-      </Container>
+      <WindowContext.Provider value={{ isWindowLandscape }}>
+        <Container>
+          <Nav />
+          <main className="main-content">{children()}</main>
+        </Container>
+      </WindowContext.Provider>
     )
   }
 }

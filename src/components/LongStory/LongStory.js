@@ -9,6 +9,7 @@ export default class LongStory extends Component {
   static propTypes = {
     fields: PropTypes.shape({
       intro: PropTypes.object.isRequired,
+      featuredStills: PropTypes.array.isRequired,
       featuredProjects: PropTypes.array.isRequired,
       about: PropTypes.object.isRequired,
     }).isRequired,
@@ -40,6 +41,7 @@ export default class LongStory extends Component {
           },
         },
         featuredProjects,
+        featuredStills,
         about: {
           aboutLeft,
           aboutLeftBody: {
@@ -55,7 +57,12 @@ export default class LongStory extends Component {
     } = this.props
     return (
       <Fragment>
-        <Introduction header={introHeader} body={introBody} youtube={youtube} />
+        <Introduction
+          header={introHeader}
+          body={introBody}
+          stills={featuredStills}
+          youtube={youtube}
+        />
         {!isWindowLandscape && (
           <img
             src="#"

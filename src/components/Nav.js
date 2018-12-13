@@ -36,7 +36,7 @@ export default class Nav extends Component {
   render() {
     const { shouldShowNav } = this.state
     return (
-      <nav className={`nav ${shouldShowNav ? `` : `hidden`}`}>
+      <nav className={`nav${shouldShowNav ? `` : ` hidden`}`}>
         <Link to="/">Home</Link>
         <Link to="/projects">Projects</Link>
         <Link to="/about">About</Link>

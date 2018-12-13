@@ -5,6 +5,7 @@
   display: flex;
   flex-flow: row wrap;
   align-content: flex-start;
+  padding: 1.5rem 1.5rem 0;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -17,22 +18,32 @@
   &__masonry {
     display: flex;
     margin-top: 0.5rem;
-    flex-basis: calc(100% - 10rem);
+  }
+  @media screen and (orientation: portrait) {
+    margin-top: 1.5rem;
   }
 }
 
 .projects-wrapper {
   margin: 0.5rem 0;
   width: 100%;
+  @media screen and (orientation: portrait) {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+  }
 }
 .masonry__project-anchor {
-  width: calc(20vw - 1rem);
+  width: calc(30vw - 1rem);
   margin: 0 0.5rem 0.5rem 0;
   overflow: hidden;
+  @media screen and (orientation: portrait) {
+    width: 100%;
+  }
 }
 
 .masonry__project-image {
-  width: calc(20vw - 1rem);
+  width: calc(30vw - 1rem);
   transition: $x-decel-hang;
   transform-origin: center;
   &:hover {

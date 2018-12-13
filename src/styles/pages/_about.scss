@@ -4,6 +4,12 @@
 $video-width: 60vw;
 $video-height: calc(#{$video-width} * 9 / 16);
 
+#about {
+  margin-top: 1.5rem;
+  @media screen and (orientation: portrait) {
+    margin-top: 3rem;
+  }
+}
 .about {
   &__iframe-wrapper {
     position: absolute;
@@ -35,7 +41,7 @@ $video-height: calc(#{$video-width} * 9 / 16);
     }
 
     @media screen and (orientation: portrait) {
-      padding: 0;
+      padding: 0 1rem;
     }
   }
 

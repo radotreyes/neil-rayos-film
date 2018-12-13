@@ -8,11 +8,26 @@ export default class LongStory extends Component {
   static propTypes = {
     header: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
+    stills: PropTypes.array.isRequired,
     youtube: PropTypes.string.isRequired,
   }
 
   render() {
-    const { header, body, youtube } = this.props
+    console.log(this.props)
+    const {
+      header, body, youtube, stills,
+    } = this.props
+    const [
+      {
+        sizes: { src: topRight },
+      },
+      {
+        sizes: { src: middle },
+      },
+      {
+        sizes: { src: bottomLeft },
+      },
+    ] = stills
     return (
       <ScreenWrapper screen="long-story-1">
         {() => (
@@ -31,21 +46,21 @@ export default class LongStory extends Component {
               <div
                 className="introduction__still--1"
                 style={{
-                  background: `red`,
+                  background: `url('${topRight}')`,
                   backgroundSize: `cover`,
                 }}
               />
               <div
                 className="introduction__still--2"
                 style={{
-                  background: `blue`,
+                  background: `url('${middle}')`,
                   backgroundSize: `cover`,
                 }}
               />
               <div
                 className="introduction__still--3"
                 style={{
-                  background: `yellow`,
+                  background: `url('${bottomLeft}')`,
                   backgroundSize: `cover`,
                 }}
               />

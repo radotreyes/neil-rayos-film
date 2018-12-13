@@ -4,6 +4,7 @@ import Link from 'gatsby-link'
 import Masonry from 'react-masonry-component'
 import uuidv4 from 'uuid/v4'
 
+import WindowContext from '../context/windowContext'
 import ScreenWrapper from '../components/ScreenWrapper'
 
 export default class Projects extends Component {
@@ -16,7 +17,6 @@ export default class Projects extends Component {
   }
 
   render() {
-    console.log(this.props)
     const {
       data: {
         allContentfulProject: { edges },
@@ -26,6 +26,7 @@ export default class Projects extends Component {
       ({
         node: {
           slug,
+          category: { title: category },
           featuredImage: {
             sizes: { src: image },
           },
@@ -33,45 +34,41 @@ export default class Projects extends Component {
       }) => ({
         slug,
         image,
+        category,
       }),
     )
-    // const projectImages = projects.map(project => ({
-    //   image:
-    //     project._embedded[`wp:featuredmedia`][0].media_details.sizes
-    //       .medium_large.source_url,
-    //   slug: project.slug,
-    //   link: project.link,
-    // }))
-    const mapProjectImages = () => projects.map(({ slug, image }) => (
+    console.log(projects)
+    const mapProjectImages = () => projects.map(({ slug, image, category }) => (
       <Link
         key={uuidv4()}
         to={`/projects/${slug}`}
         className="masonry__project-anchor"
+        data-category={category.toLowerCase()}
       >
         <img className="masonry__project-image" src={image} alt="test" />
       </Link>
     ))
 
     return (
-      <ScreenWrapper main screen="all-projects">
-        {() => (
+      <WindowContext.Consumer>
+        {({ isWindowLandscape }) => (
           <Fragment>
-            {/* {({ isWindowLandscape }) => ( */}
             <section className="projects-page">
               <h1 className="lead">MY WORK</h1>
               <div className="projects-wrapper">
                 {` `}
-                {/* {!isWindowLandscape && mapProjectImages()} */}
-
-                <Masonry className="projects-page__masonry">
-                  {mapProjectImages()}
-                </Masonry>
+                {!isWindowLandscape ? (
+                  mapProjectImages()
+                ) : (
+                  <Masonry className="projects-page__masonry">
+                    {mapProjectImages()}
+                  </Masonry>
+                )}
               </div>
             </section>
-            {/* )} */}
           </Fragment>
         )}
-      </ScreenWrapper>
+      </WindowContext.Consumer>
     )
   }
 }
@@ -83,6 +80,9 @@ export const projectsQuery = graphql`
       edges {
         node {
           slug
+          category {
+            title
+          }
           featuredImage {
             sizes(maxWidth: 800, maxHeight: 450) {
               src

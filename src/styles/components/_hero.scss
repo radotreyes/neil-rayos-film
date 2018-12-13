@@ -16,6 +16,7 @@
     @media screen and (orientation: portrait) {
       height: auto;
       grid-template-rows: 20vh repeat(2, 1fr);
+      margin: 0 -1rem;
     }
   }
 
