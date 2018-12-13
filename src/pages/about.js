@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Markdown from 'react-markdown'
 
-import ScreenWrapper from '../components/ScreenWrapper'
 import Button from '../components/Button'
 import Instagram from '../../static/svgs/instagram.svg'
 import YouTube from '../../static/svgs/youtube.svg'
@@ -21,6 +20,11 @@ export default class About extends Component {
           twitter: PropTypes.string.isRequired,
           instagram: PropTypes.string.isRequired,
           youtube: PropTypes.string.isRequired,
+          resume: PropTypes.shape({
+            internal: PropTypes.shape({
+              resume: PropTypes.string.isRequired,
+            }).isRequired,
+          }).isRequired,
           shortBio: PropTypes.shape({
             internal: PropTypes.shape({
               shortBio: PropTypes.string.isRequired,
@@ -28,7 +32,6 @@ export default class About extends Component {
           }).isRequired,
         }).isRequired,
         emailButtonText: PropTypes.string.isRequired,
-        resume: PropTypes.object.isRequired,
       }).isRequired,
     }).isRequired,
   }
@@ -101,10 +104,9 @@ export default class About extends Component {
                 />
               </section>
             </div>
-            <div
-              className="about__desc"
-              dangerouslySetInnerHTML={{ __html: shortBio }}
-            />
+            <div className="about__desc">
+              <Markdown source={shortBio} />
+            </div>
           </div>
           <div className="about__cv">
             <h1 className="about__header lead">resume</h1>

@@ -14,9 +14,7 @@ export const ButtonLink = ({
   href, theme, type, value,
 }) => (
   <Link to={href}>
-    <a>
-      <Button type={type} theme={theme} value={value} />
-    </a>
+    <Button type={type} theme={theme} value={value} />
   </Link>
 )
 

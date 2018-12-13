@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import { throttle } from 'lodash'
-// import MenuContext from '../context/menuContext'
-// import getMenuProps from '../helpers/getMenuProps'
 
 export default class Nav extends Component {
   state = {

@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Nav from '../components/Nav'
-import Container from '../components/container'
+import Container from '../components/Container'
 
 import Footer from '../components/Footer'
 import WindowContext from '../context/windowContext'
@@ -44,7 +46,6 @@ class Template extends Component {
     let header
 
     let rootPath = `/`
-    /* eslint-disable no-undef */
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       rootPath = `${__PATH_PREFIX__}/`
     }
@@ -63,7 +64,6 @@ class Template extends Component {
 
 export default Template
 
-/* eslint-disable-no-undef */
 export const layoutQuery = graphql`
   query LayoutQuery {
     contentfulFooter(contentful_id: { eq: "3HGNMi2toIWw8YkoKcwqMG" }) {

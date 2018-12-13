@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import MenuContext from '../context/menuContext'
-// import getMenuProps from '../helpers/getMenuProps'
+
+import uuidv4 from 'uuid/v4'
 
 export default class Footer extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ export default class Footer extends Component {
   render() {
     const { links } = this.props
     const footerLinks = links.map(({ title, url }) => (
-      <a className="footer__link" href={url}>
+      <a className="footer__link" key={uuidv4()} href={url}>
         {title}
       </a>
     ))

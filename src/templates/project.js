@@ -4,13 +4,11 @@ import React, { Component, Fragment, createRef } from 'react'
 import PropTypes from 'prop-types'
 
 import Markdown from 'react-markdown'
-import ScreenWrapper from '../components/ScreenWrapper'
 import WindowContext from '../context/windowContext'
 
 export default class Project extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
-    pathContext: PropTypes.object.isRequired,
   }
 
   state = {
@@ -79,7 +77,6 @@ export default class Project extends Component {
           },
         },
       },
-      pathContext: { slug },
     } = this.props
     const { activeSlide } = this.state
     // const videoId = video_url.split(`=`)[1]
@@ -91,7 +88,6 @@ export default class Project extends Component {
     }
 
     const description = descriptions[activeSlide]
-    console.log(descriptions)
 
     return (
       <WindowContext.Consumer>

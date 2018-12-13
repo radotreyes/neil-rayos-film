@@ -1,14 +1,11 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react'
 import PropTypes from 'prop-types'
-// import Header from './Header'
-import ScreenWrapper from './ScreenWrapper'
 import Button, { ButtonLink } from './Button'
 import Instagram from '../../static/svgs/instagram.svg'
 import YouTube from '../../static/svgs/youtube.svg'
 import Twitter from '../../static/svgs/twitter.svg'
 
-// import Footer from './Footer'
 const Hero = (props) => {
   const {
     heroProps: {
