@@ -5,7 +5,6 @@ import Link from 'gatsby-link'
 import uuidv4 from 'uuid/v4'
 
 import ScreenWrapper from '../ScreenWrapper'
-import normalizeString from '../../helpers/normalizeString'
 
 export default class Projects extends Component {
   static propTypes = {
@@ -90,7 +89,7 @@ export default class Projects extends Component {
                 <div className="carousel-marker" ref={this.carouselMarker}>
                   .
                 </div>
-                {featuredList.map(({ description, slug, title }, i) => (
+                {featuredList.map(({ description, title }, i) => (
                   <li
                     key={uuidv4()}
                     className={!i ? `active` : ``}
