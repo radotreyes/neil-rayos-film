@@ -1,0 +1,402 @@
+[
+  {
+    "ts": "2018-12-13T21:23:09.092Z",
+    "level": "error",
+    "error": {
+      "name": "BadRequest",
+      "entity": {
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "28p9vvm1oxuw"
+            }
+          },
+          "id": "person",
+          "type": "ContentType",
+          "createdAt": "2017-05-11T12:04:23.540Z",
+          "updatedAt": "2017-05-18T14:04:51.650Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "066RqBikAjzKy0SWUEtFvH"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2AAFsI4st4sZPlF1LFT13q"
+            }
+          },
+          "publishedCounter": 7,
+          "version": 14,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2AAFsI4st4sZPlF1LFT13q"
+            }
+          },
+          "publishedVersion": 13,
+          "firstPublishedAt": "2017-05-11T12:04:23.869Z",
+          "publishedAt": "2017-05-18T14:04:51.628Z"
+        },
+        "displayField": "name",
+        "name": "Person",
+        "description": "",
+        "fields": [
+          {
+            "id": "name",
+            "name": "Name",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "title",
+            "name": "Title",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "company",
+            "name": "Company",
+            "type": "Symbol",
+            "localized": false,
+            "required": true,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "shortBio",
+            "name": "Short Bio",
+            "type": "Text",
+            "localized": false,
+            "required": true,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "email",
+            "name": "Email",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "phone",
+            "name": "Phone",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "facebook",
+            "name": "Facebook",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "twitter",
+            "name": "Twitter",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "github",
+            "name": "Github",
+            "type": "Symbol",
+            "localized": false,
+            "required": false,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false
+          },
+          {
+            "id": "image",
+            "name": "Image",
+            "type": "Link",
+            "localized": false,
+            "required": false,
+            "validations": [
+            ],
+            "disabled": false,
+            "omitted": false,
+            "linkType": "Asset"
+          }
+        ]
+      },
+      "data": {
+        "status": 400,
+        "statusText": "Bad Request",
+        "message": "You need to omit a field before deleting it",
+        "details": {
+        },
+        "request": {
+          "url": "https://api.contentful.com:443/spaces/5wce0xszm9y5/environments/master/content_types/person",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.import/7.4.3; feature library-import; sdk contentful-management.js/5.2.1; platform node.js/v8.9.3; os macOS/18.2.0;",
+            "Authorization": "Bearer ...d4d5b",
+            "user-agent": "node.js/v8.9.3",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 26,
+            "Content-Length": 1409
+          },
+          "method": "put",
+          "payloadData": "{\"displayField\":\"name\",\"name\":\"Person\",\"description\":\"\",\"fields\":[{\"id\":\"name\",\"name\":\"Name\",\"type\":\"Symbol\",\"localized\":false,\"required\":true,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"title\",\"name\":\"Title\",\"type\":\"Symbol\",\"localized\":false,\"required\":true,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"company\",\"name\":\"Company\",\"type\":\"Symbol\",\"localized\":false,\"required\":true,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"shortBio\",\"name\":\"Short Bio\",\"type\":\"Text\",\"localized\":false,\"required\":true,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"email\",\"name\":\"Email\",\"type\":\"Symbol\",\"localized\":false,\"required\":false,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"phone\",\"name\":\"Phone\",\"type\":\"Symbol\",\"localized\":false,\"required\":false,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"facebook\",\"name\":\"Facebook\",\"type\":\"Symbol\",\"localized\":false,\"required\":false,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"twitter\",\"name\":\"Twitter\",\"type\":\"Symbol\",\"localized\":false,\"required\":false,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"github\",\"name\":\"Github\",\"type\":\"Symbol\",\"localized\":false,\"required\":false,\"validations\":[],\"disabled\":false,\"omitted\":false},{\"id\":\"image\",\"name\":\"Image\",\"type\":\"Link\",\"localized\":false,\"required\":false,\"validations\":[],\"disabled\":false,\"omitted\":false,\"linkType\":\"Asset\"}]}"
+        },
+        "requestId": "f1a9a7d9cd9565373d18fd604c96ffbe"
+      }
+    }
+  },
+  {
+    "ts": "2018-12-13T21:23:23.653Z",
+    "level": "error",
+    "error": {
+      "name": "UnknownField",
+      "entity": {
+        "original": {
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "28p9vvm1oxuw"
+              }
+            },
+            "id": "15jwOBqpxqSAOy2eOO4S0m",
+            "type": "Entry",
+            "createdAt": "2017-05-11T12:04:29.532Z",
+            "updatedAt": "2017-05-18T14:13:14.463Z",
+            "createdBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "066RqBikAjzKy0SWUEtFvH"
+              }
+            },
+            "updatedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "2AAFsI4st4sZPlF1LFT13q"
+              }
+            },
+            "publishedCounter": 15,
+            "version": 190,
+            "publishedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "2AAFsI4st4sZPlF1LFT13q"
+              }
+            },
+            "publishedVersion": 189,
+            "firstPublishedAt": "2017-05-11T12:06:33.065Z",
+            "publishedAt": "2017-05-18T14:13:14.431Z",
+            "contentType": {
+              "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "person"
+              }
+            }
+          },
+          "fields": {
+            "name": {
+              "en-US": "John Doe"
+            },
+            "title": {
+              "en-US": "Web Developer"
+            },
+            "company": {
+              "en-US": "ACME"
+            },
+            "shortBio": {
+              "en-US": "Research and recommendations for modern stack websites."
+            },
+            "email": {
+              "en-US": "john@doe.com"
+            },
+            "phone": {
+              "en-US": "0176 / 1234567"
+            },
+            "facebook": {
+              "en-US": "johndoe"
+            },
+            "twitter": {
+              "en-US": "johndoe"
+            },
+            "github": {
+              "en-US": "johndoe"
+            },
+            "image": {
+              "en-US": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Asset",
+                  "id": "7orLdboQQowIUs22KAW4U"
+                }
+              }
+            }
+          }
+        },
+        "transformed": {
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "28p9vvm1oxuw"
+              }
+            },
+            "id": "15jwOBqpxqSAOy2eOO4S0m",
+            "type": "Entry",
+            "createdAt": "2017-05-11T12:04:29.532Z",
+            "updatedAt": "2017-05-18T14:13:14.463Z",
+            "createdBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "066RqBikAjzKy0SWUEtFvH"
+              }
+            },
+            "updatedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "2AAFsI4st4sZPlF1LFT13q"
+              }
+            },
+            "publishedCounter": 15,
+            "version": 190,
+            "publishedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "2AAFsI4st4sZPlF1LFT13q"
+              }
+            },
+            "publishedVersion": 189,
+            "firstPublishedAt": "2017-05-11T12:06:33.065Z",
+            "publishedAt": "2017-05-18T14:13:14.431Z",
+            "contentType": {
+              "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "person"
+              }
+            }
+          },
+          "fields": {
+            "name": {
+              "en-US": "John Doe"
+            },
+            "title": {
+              "en-US": "Web Developer"
+            },
+            "company": {
+              "en-US": "ACME"
+            },
+            "shortBio": {
+              "en-US": "Research and recommendations for modern stack websites."
+            },
+            "email": {
+              "en-US": "john@doe.com"
+            },
+            "phone": {
+              "en-US": "0176 / 1234567"
+            },
+            "facebook": {
+              "en-US": "johndoe"
+            },
+            "twitter": {
+              "en-US": "johndoe"
+            },
+            "github": {
+              "en-US": "johndoe"
+            },
+            "image": {
+              "en-US": {
+                "sys": {
+                  "type": "Link",
+                  "linkType": "Asset",
+                  "id": "7orLdboQQowIUs22KAW4U"
+                }
+              }
+            }
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "No field with id \"company\" found.",
+        "details": {
+          "errors": [
+            {
+              "name": "unknown",
+              "path": [
+                "fields",
+                "company"
+              ]
+            }
+          ]
+        },
+        "request": {
+          "url": "https://api.contentful.com:443/spaces/5wce0xszm9y5/environments/master/entries/15jwOBqpxqSAOy2eOO4S0m",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.import/7.4.3; feature library-import; sdk contentful-management.js/5.2.1; platform node.js/v8.9.3; os macOS/18.2.0;",
+            "Authorization": "Bearer ...d4d5b",
+            "user-agent": "node.js/v8.9.3",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 209,
+            "Content-Length": 428
+          },
+          "method": "put",
+          "payloadData": "{\"fields\":{\"name\":{\"en-US\":\"John Doe\"},\"title\":{\"en-US\":\"Web Developer\"},\"company\":{\"en-US\":\"ACME\"},\"shortBio\":{\"en-US\":\"Research and recommendations for modern stack websites.\"},\"email\":{\"en-US\":\"john@doe.com\"},\"phone\":{\"en-US\":\"0176 / 1234567\"},\"facebook\":{\"en-US\":\"johndoe\"},\"twitter\":{\"en-US\":\"johndoe\"},\"github\":{\"en-US\":\"johndoe\"},\"image\":{\"en-US\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"Asset\",\"id\":\"7orLdboQQowIUs22KAW4U\"}}}}}"
+        },
+        "requestId": "584f8b8cd58ac7f6fb8588a364446baa"
+      }
+    }
+  }
+]
