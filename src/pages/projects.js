@@ -1,11 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { throttle } from 'lodash'
 import Link from 'gatsby-link'
 import Masonry from 'react-masonry-component'
 import uuidv4 from 'uuid/v4'
 
 import WindowContext from '../context/windowContext'
-import ScreenWrapper from '../components/ScreenWrapper'
+
+const normalizeString = string => string
+  .trim()
+  .replace(/\s/g, ``)
+  .toLowerCase()
 
 export default class Projects extends Component {
   static propTypes = {
@@ -14,6 +19,16 @@ export default class Projects extends Component {
         edges: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
       }).isRequired,
     }).isRequired,
+  }
+
+  state = {
+    searchInput: ``,
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      searchInput: e.target.value,
+    })
   }
 
   render() {
@@ -25,6 +40,7 @@ export default class Projects extends Component {
     const projects = edges.map(
       ({
         node: {
+          title,
           slug,
           category: { title: category },
           featuredImage: {
@@ -32,35 +48,61 @@ export default class Projects extends Component {
           },
         },
       }) => ({
-        slug,
-        image,
         category,
+        image,
+        slug,
+        title,
       }),
     )
-    console.log(projects)
-    const mapProjectImages = () => projects.map(({ slug, image, category }) => (
-      <Link
-        key={uuidv4()}
-        to={`/projects/${slug}`}
-        className="masonry__project-anchor"
-        data-category={category.toLowerCase()}
-      >
-        <img className="masonry__project-image" src={image} alt="test" />
-      </Link>
-    ))
+
+    const { searchInput } = this.state
+    const normalSearch = normalizeString(searchInput)
+    const mapProjectImages = throttle(
+      () => projects
+        .filter(
+          ({ category, slug, title }) => normalizeString(slug).includes(normalSearch)
+              || normalizeString(category).includes(normalSearch)
+              || normalizeString(title).includes(normalSearch),
+        )
+        .map(({ slug, image }) => (
+          <Link
+            key={uuidv4()}
+            to={`/projects/${slug}`}
+            className="masonry__project-anchor"
+          >
+            <img className="masonry__project-image" src={image} alt="test" />
+          </Link>
+        )),
+      150,
+    )
 
     return (
       <WindowContext.Consumer>
         {({ isWindowLandscape }) => (
           <Fragment>
             <section className="projects-page">
-              <h1 className="lead">MY WORK</h1>
+              <div className="projects__header">
+                <h1 className="lead">MY WORK</h1>
+                <input
+                  type="text"
+                  placeholder="Search projects"
+                  name="projects__search"
+                  value={searchInput}
+                  onChange={this.handleChange}
+                  className="projects__search"
+                />
+              </div>
               <div className="projects-wrapper">
                 {` `}
                 {!isWindowLandscape ? (
                   mapProjectImages()
                 ) : (
-                  <Masonry className="projects-page__masonry">
+                  <Masonry
+                    className="projects-page__masonry"
+                    options={{
+                      transitionDuration: 0,
+                    }}
+                  >
                     {mapProjectImages()}
                   </Masonry>
                 )}
@@ -79,6 +121,7 @@ export const projectsQuery = graphql`
     allContentfulProject(sort: { fields: [releaseDate], order: DESC }) {
       edges {
         node {
+          title
           slug
           category {
             title
